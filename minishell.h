@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/05/30 20:53:38 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/01 22:02:23 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 # include <stdio.h> // perror
 # include <readline/readline.h> // readline
 # include <readline/history.h> // history
-# include <stdlib.h> // getenv
+# include <stdlib.h> // getenv, EXIT_SUCCESS, EXIT_FAILURE
 # include <unistd.h> // getpwd
 # include <sys/wait.h> // waitpid
 # include <sys/stat.h> // stat
 # include <signal.h> // sigaction
 # include <fcntl.h> // open flags
+// roi :
+# include "./includes/executes.h" // executes
 
 typedef struct s_data
 {
@@ -76,7 +78,8 @@ typedef struct s_token
 }				t_token;
 
 /*Loop into the minishell program*/
-void	minishell_loop(t_data *data);
+// void	minishell_loop(t_data *data);
+int		minishell_loop(t_data *data);
 
 /*freearr - free memory*/
 void	free_2darray(char **array);

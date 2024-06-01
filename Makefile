@@ -6,7 +6,7 @@
 #    By: oruban <oruban@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/25 15:10:17 by beredzhe          #+#    #+#              #
-#    Updated: 2024/05/30 20:55:40 by oruban           ###   ########.fr        #
+#    Updated: 2024/06/01 22:13:22 by oruban           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRCS	=	$(wildcard src/main/*.c) \
 			$(wildcard src/tokenization/*.c) \
 			$(wildcard src/utils/*.c) \
 			$(wildcard src/lexer/*.c) \
-			$(wildcard src/expand/*c)
+			$(wildcard src/expand/*c) \
+			$(wildcard src/executes/*.c) # roi
 
 # Generate object files names
 OBJ_DIR	=	obj

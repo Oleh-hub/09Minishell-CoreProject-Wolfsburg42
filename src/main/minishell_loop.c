@@ -6,16 +6,18 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 10:55:18 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/05/30 20:52:08 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/01 21:56:46 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	minishell_loop(t_data *data)
+int		minishell_loop(t_data *data)
 {
 	char	*input;
-	
+	int		exit_status; // roi
+
+	exit_status = EXIT_SUCCESS; // roi
 	while (1)
 	{
 		/* 1.Here have to write function to reset */
@@ -46,7 +48,23 @@ void	minishell_loop(t_data *data)
 		// 	continue;
 		printf("Input proccesed: %s\n", data->input_line); //working trim
 		printf("Input: %s\n", input); //standart trim. I free it already
+		{ // roi - executable part
+			// if (!has_pipe(input)) 
+			// if (!0) // no pipe
+				exit_status = execute_one_command();
+				// exit_status = execute_one_command(input, &minienv);
+			// else
+			// {
+			// 	commands = split_commands(input);
+			// 	free(input);
+			// 	exit_status = execute_multiple_commands(commands, &minienv);
+			// 	free_array(commands);
+			// }
+		}
+		
 		free(input);
-		////////////execute(data);
+	}
+	{ // roi
+		return (exit_status);
 	}
 }
