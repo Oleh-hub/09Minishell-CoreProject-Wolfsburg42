@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "minishell.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "execute.h": "c",
+        "wait.h": "c"
     }
 }
