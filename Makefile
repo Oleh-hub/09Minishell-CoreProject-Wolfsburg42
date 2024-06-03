@@ -6,7 +6,7 @@
 #    By: oruban <oruban@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/25 15:10:17 by beredzhe          #+#    #+#              #
-#    Updated: 2024/06/01 22:13:22 by oruban           ###   ########.fr        #
+#    Updated: 2024/06/03 16:35:42 by oruban           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS	=	$(wildcard src/main/*.c) \
 			$(wildcard src/utils/*.c) \
 			$(wildcard src/lexer/*.c) \
 			$(wildcard src/expand/*c) \
-			$(wildcard src/executes/*.c) # roi
+			$(wildcard src/execution/*.c) # roi
 
 # Generate object files names
 OBJ_DIR	=	obj
@@ -34,9 +34,12 @@ LDFLAGS	+=	-L./libft
 OBJS	=	$(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 LIBFT_A	=	libft/libft.a
-HEADER	=	$(wildcard *.h)
+HEADER	=	$(wildcard *.h) $(wildcard ./includes/*.h) #roi corrected
 VPATH	=	src/main:src/tokenization:src/utils
 INCLUDE	=	-I ./ -I ./includes
+
+# print:
+# 	echo $(HEADER)
 
 all: $(NAME)
 
@@ -65,7 +68,7 @@ $(NAME): $(LIBFT_A) $(OBJ_DIR) $(OBJS)
 # Rule to compile each .c file into .o file in the obj directory
 $(OBJ_DIR)/%.o: %.c $(HEADER)
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
+	$(CC) $(CFLAGS)  $(INCLUDE) -c $< -o $@
 
 $(OBJ_DIR):
 	@mkdir -p $@

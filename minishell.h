@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/01 22:02:23 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/03 16:35:53 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <sys/stat.h> // stat
 # include <signal.h> // sigaction
 # include <fcntl.h> // open flags
-// roi :
-# include "./includes/executes.h" // executes
+// # include "./includes/execute.h" // execute roi commented
+
 
 typedef struct s_data
 {
@@ -38,8 +38,23 @@ typedef struct s_data
 	char			**root_directory; /*while be used later for parcing part*/
 	char			*input_line; /*input after being processed*/
 
+	//**********roi start**********
+	// int				single_quote;
+	// int				double_quote;
+	struct s_tree	*tree;
+	// t_heredoc_file	*heredoc_file;
+	// t_envir			*env_list;
+	// t_envir			*sorted_env_list;
+	long int		exit_status;
+	int				cmd_nbrs;
+	int				pid;
+	int				arg_nums;
+	int				parenthesis_scope;
+	char			*curr_dir;
+	char			*exit_str;
+	//******roi end****************
 }				t_data;
-
+ 
 typedef enum e_token_type
 {
 	T_WORD = 1,
@@ -136,4 +151,10 @@ int	find_token2(int i, char *str, char *split);
 /*parenthesis_utils2.c*/
 void	set_token_parenth2(t_token *token);
 
-#endif
+//**********roi start**********
+// execute.c
+int	execute(t_data *data);
+//**********roi end**********
+
+
+#endif	//MINISHELL_H
