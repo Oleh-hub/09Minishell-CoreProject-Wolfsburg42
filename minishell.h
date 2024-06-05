@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/03 19:07:04 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/05 19:22:50 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,36 @@
 # include <signal.h> // sigaction
 # include <fcntl.h> // open flags
 // # include "./includes/execute.h" // execute roi commented
+
+
+typedef struct s_data
+{
+	struct s_token	*token_list;
+	int				s_quote; /*shell is inside a single quoted string*/
+	int				d_quote;
+	int				forked; /*manage parent and child process behaviors*/
+	int				count; /*count the number of tokens*/
+
+	char			*input_minishell; /*initial input to the shell*/
+	char			**root_directory; /*while be used later for parcing part*/
+	char			*input_line; /*input after being processed*/
+
+	//**********roi start**********
+	// int				single_quote;
+	// int				double_quote;
+	struct s_tree	*tree;
+	// t_heredoc_file	*heredoc_file;
+	// t_envir			*env_list;
+	// t_envir			*sorted_env_list;
+	long int		exit_status;
+	int				cmd_nbrs;
+	int				pid;
+	int				arg_nums;
+	int				parenthesis_scope;
+	char			*curr_dir;
+	char			*exit_str;
+	//******roi end****************
+}				t_data;
  
 typedef enum e_token_type
 {
@@ -181,5 +211,6 @@ void	set_token_parenth2(t_token *token);
 // execute.c
 int	execute(t_data *data);
 //**********roi end**********
+
 
 #endif	//MINISHELL_H
