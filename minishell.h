@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/05 19:33:18 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/05 20:33:07 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ typedef struct s_data
 	// int				single_quote;
 	// int				double_quote;
 	struct s_tree	*tree;
-	// t_heredoc_file	*heredoc_file;
-	// t_envir			*env_list;
-	// t_envir			*sorted_env_list;
+	t_heredoc_file	*heredoc_file;
+	t_envir			*env_list;
+	t_envir			*sorted_env_list;
 	long int		exit_status;
 	int				cmd_nbrs;
 	int				pid;
