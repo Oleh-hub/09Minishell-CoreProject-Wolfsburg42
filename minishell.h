@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/03 16:35:53 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/03 19:07:04 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,36 +24,6 @@
 # include <signal.h> // sigaction
 # include <fcntl.h> // open flags
 // # include "./includes/execute.h" // execute roi commented
-
-
-typedef struct s_data
-{
-	struct s_token	*token_list;
-	int				s_quote; /*shell is inside a single quoted string*/
-	int				d_quote;
-	int				forked; /*manage parent and child process behaviors*/
-	int				count; /*count the number of tokens*/
-
-	char			*input_minishell; /*initial input to the shell*/
-	char			**root_directory; /*while be used later for parcing part*/
-	char			*input_line; /*input after being processed*/
-
-	//**********roi start**********
-	// int				single_quote;
-	// int				double_quote;
-	struct s_tree	*tree;
-	// t_heredoc_file	*heredoc_file;
-	// t_envir			*env_list;
-	// t_envir			*sorted_env_list;
-	long int		exit_status;
-	int				cmd_nbrs;
-	int				pid;
-	int				arg_nums;
-	int				parenthesis_scope;
-	char			*curr_dir;
-	char			*exit_str;
-	//******roi end****************
-}				t_data;
  
 typedef enum e_token_type
 {
@@ -74,6 +44,62 @@ typedef enum e_token_type
 	T_DELIMITER,
 	T_PARENTHESES
 }				t_token_type;
+
+//**************roi start**************
+typedef struct s_heredoc_file
+{
+	int						id;
+	char					*filename;
+	struct s_heredoc_file	*next;
+}				t_heredoc_file;
+
+typedef struct s_tree
+{
+	t_token_type	type;
+	char			*value;
+	char			**args_array;
+	struct s_tree	*left;
+	struct s_tree	*right;
+}				t_tree;
+
+typedef struct s_envir
+{
+	char			*var_name;
+	char			*var_value;
+	int				visible;
+	struct s_envir	*next;
+	struct s_envir	*prev;
+}				t_envir;
+//****************roi end****************
+
+typedef struct s_data
+{
+	struct s_token	*token_list;
+	int				s_quote; /*shell is inside a single quoted string*/
+	int				d_quote;
+	int				forked; /*manage parent and child process behaviors*/
+	int				count; /*count the number of tokens*/
+
+	char			*input_minishell; /*initial input to the shell*/
+	char			**root_directory; /*while be used later for parcing part*/
+	char			*input_line; /*input after being processed*/
+
+	//**********roi start**********
+	// int				single_quote;
+	// int				double_quote;
+	struct s_tree	*tree;
+	t_heredoc_file	*heredoc_file;
+	t_envir			*env_list;
+	t_envir			*sorted_env_list;
+	long int		exit_status;
+	int				cmd_nbrs;
+	int				pid;
+	int				arg_nums;
+	int				parenthesis_scope;
+	char			*curr_dir;
+	char			*exit_str;
+	//******roi end****************
+}				t_data;
 
 typedef struct s_env
 {
@@ -155,6 +181,5 @@ void	set_token_parenth2(t_token *token);
 // execute.c
 int	execute(t_data *data);
 //**********roi end**********
-
 
 #endif	//MINISHELL_H

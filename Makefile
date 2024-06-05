@@ -6,19 +6,21 @@
 #    By: oruban <oruban@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/25 15:10:17 by beredzhe          #+#    #+#              #
-#    Updated: 2024/06/03 16:35:42 by oruban           ###   ########.fr        #
+#    Updated: 2024/06/04 11:59:12 by oruban           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	minishell
 
 # List all source files
-SRCS	=	$(wildcard src/main/*.c) \
-			$(wildcard src/tokenization/*.c) \
-			$(wildcard src/utils/*.c) \
-			$(wildcard src/lexer/*.c) \
-			$(wildcard src/expand/*c) \
-			$(wildcard src/execution/*.c) # roi
+# SRCS	=	$(wildcard src/main/*.c) \
+# 			$(wildcard src/tokenization/*.c) \
+# 			$(wildcard src/utils/*.c) \
+# 			$(wildcard src/lexer/*.c) \
+# 			$(wildcard src/expand/*c) 
+SRCS	=	$(shell find src -name '*.c')
+# 			$(wildcard src/execution/*.c) \
+# 			$(wildcard src/debug/*.c)		# roi
 
 # Generate object files names
 OBJ_DIR	=	obj
@@ -68,7 +70,7 @@ $(NAME): $(LIBFT_A) $(OBJ_DIR) $(OBJS)
 # Rule to compile each .c file into .o file in the obj directory
 $(OBJ_DIR)/%.o: %.c $(HEADER)
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS)  $(INCLUDE) -c $< -o $@
+	@$(CC) $(CFLAGS)  $(INCLUDE) -c $< -o $@
 
 $(OBJ_DIR):
 	@mkdir -p $@
