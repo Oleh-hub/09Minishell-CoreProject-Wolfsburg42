@@ -6,44 +6,19 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:22:45 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/09 20:26:29 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/07 16:25:00 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* Checking 
-typedef struct s_envir {
-	char			*var_name;
-	char			*var_value;
-	int				visible;
-	struct s_envir	*next;
-	struct s_envir	*prev;
-}				t_envir; */
-
-void out_t_envir(char *comment, t_envir *env_list)
-{
-	printf("\033[34m");
-	printf("====>start struct s_envir %s\n", comment);
-	while (env_list)
-	{
-		printf("(char *) env_list->var_name	= %s\n", env_list->var_name);
-		printf("(char *) env_list->var_value	= %s\n", env_list->var_value);
-		printf("(int) env_list->visible		= %d\n", env_list->visible);
-		printf("(struct s_envir *) env_list->next	= %p\n", env_list->next);
-		printf("(struct s_envir *) env_list->prev	= %p\n", env_list->prev);
-		env_list = env_list->next;
-	}
-	printf("====>end struct s_envir\n");
-	printf("\033[0m");
-}
 
 /*  Checking*/
 /* 	typedef struct s_tree 
 {
 	t_token_type	type;
 	char			*value;
-	char			**args_array; // command with all arguments
+	char			**args_array;
 	struct s_tree	*left;
 	struct s_tree	*right;
 }				t_tree; */
@@ -52,24 +27,11 @@ void out_t_tree(char *comment, t_tree *tree)
 {
 	printf ("\033[34m");
 	printf("====>start struct s_tree %s\n", comment);
-	while (tree)
-	{
-		printf("(t_token_type	*)tree->type		= %d\n", tree->type);
-		printf("(char		*)tree->value		= %s\n", tree->value);
-		printf("(char		*)tree->args_array	= %p\n", tree->args_array);
-		if (tree->args_array)
-		{
-			int i = 0;
-			while (tree->args_array[i])
-			{
-				printf("tree->args_array[%d]		= %s\n", i, tree->args_array[i]);
-				i++;
-			}
-		}
-		printf("(struct s_tree	*)tree->left		= %p\n", tree->left);
-		printf("(struct s_tree	*)tree->right		= %p\n", tree->right);
-		tree = tree->right;
-	}
+	printf("(t_token_type	*)tree->type		= %d\n", tree->type);
+	printf("(char		*)tree->value		= %s\n", tree->value);
+	printf("(char		*)tree->args_array	= %p\n", tree->args_array);
+	printf("(struct s_tree	*)tree->left		= %p\n", tree->left);
+	printf("(struct s_tree	*)tree->right		= %p\n", tree->right);
 	printf("====>end struct s_tree *tree\n");
 	printf ("\033[0m");
 }

@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   execute_buildin.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/05 18:00:44 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/12 07:27:56 by oruban           ###   ########.fr       */
+/*   Created: 2024/06/06 08:28:39 by oruban            #+#    #+#             */
+/*   Updated: 2024/06/08 19:13:16 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* roi 0605
- */
-
-int	execute(t_data *data)
+int	execute_cd(t_data *data, char *path)
 {
-	return (data->exit_status = evaluate_execution(data, data->tree));
+	if (!path)
+	{
+		path = getenv("HOME");
+		if (!path)
+			return (printf("minishell: cd: HOME not set\n"), 1);
+	}
+	if (validate_and_change_directory(path))
+		return (1);
+	return (update_pwd(data));
 }
-

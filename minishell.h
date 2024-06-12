@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/05 20:33:07 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/08 18:57:47 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,22 @@
 // # include "./includes/execute.h" // execute roi commented
 
 
+/* roi 0607
+lis
+char			*var_name;	//env NAME
+char			*var_value;	//env VALUE
+int				visible;	//if the variable is visible. It may not in a child
+	*/
+typedef struct s_envir
+{
+	char			*var_name;
+	char			*var_value;
+	int				visible;
+	struct s_envir	*next;
+	struct s_envir	*prev;
+}				t_envir;
+//****************roi end****************
+
 typedef struct s_data
 {
 	struct s_token	*token_list;
@@ -42,7 +58,7 @@ typedef struct s_data
 	// int				single_quote;
 	// int				double_quote;
 	struct s_tree	*tree;
-	t_heredoc_file	*heredoc_file;
+	// t_heredoc_file	*heredoc_file; //roi 0608
 	t_envir			*env_list;
 	t_envir			*sorted_env_list;
 	long int		exit_status;
@@ -91,15 +107,6 @@ typedef struct s_tree
 	struct s_tree	*left;
 	struct s_tree	*right;
 }				t_tree;
-
-typedef struct s_envir
-{
-	char			*var_name;
-	char			*var_value;
-	int				visible;
-	struct s_envir	*next;
-	struct s_envir	*prev;
-}				t_envir;
 //****************roi end****************
 
 typedef struct s_env

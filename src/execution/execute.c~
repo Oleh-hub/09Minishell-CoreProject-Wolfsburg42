@@ -5,18 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/05 18:00:44 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/12 07:27:56 by oruban           ###   ########.fr       */
+/*   Created: 2024/06/01 21:54:41 by oruban            #+#    #+#             */
+/*   Updated: 2024/06/05 19:24:14 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// #include "../../includes/execute.h"
 #include "minishell.h"
-
-/* roi 0605
- */
+#include "execute.h"
 
 int	execute(t_data *data)
 {
-	return (data->exit_status = evaluate_execution(data, data->tree));
+    return (data->exit_status = 1);
+    // return (data->exit_status = evaluate_execution(data, data->tree));
 }
-
