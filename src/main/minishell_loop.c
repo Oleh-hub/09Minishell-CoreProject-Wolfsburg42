@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 10:55:18 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/05 19:21:28 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/12 09:04:28 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,10 @@ int		minishell_loop(t_data *data)
 		if (has_unclosed_quotes(input))
 			continue;
 		data->input_line = trim_input(input);
-		ft_memdel((void *)&input);
+		ft_memdel(&input);
 		if ((special_chars(data->input_line))
 			|| (lexical_analysis(data, data->input_line)))
 			continue;
-		// if ((special_chars(data->input_line)))
-		// 	continue;
 		printf("Input proccesed: %s\n", data->input_line); //working trim
 		printf("Input: %s\n", input); //standart trim. I free it already
 		free(input);

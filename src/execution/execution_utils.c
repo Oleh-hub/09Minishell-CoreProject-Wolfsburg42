@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
+/*   execution_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 11:36:01 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/10 14:43:24 by beredzhe         ###   ########.fr       */
+/*   Created: 2024/06/04 10:57:41 by beredzhe          #+#    #+#             */
+/*   Updated: 2024/06/09 13:45:27 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	init_data(t_data **data, char **envp)
+int	is_only_asterisks(char *str)
 {
-	(void)envp;
-	*data = malloc(sizeof(t_data));
-	if (!*data)
-		exit(EXIT_FAILURE);
-	(*data)->token_list = NULL;
-	(*data)->input_line = NULL;
-	(*data)->root_directory = NULL;
-	(*data)->exit_status = 0;
-	(*data)->input_minishell = "minishell>> ";
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i++] != '*')
+			return (0);
+	}
+	return (1);
 }

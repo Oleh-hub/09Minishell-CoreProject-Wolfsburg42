@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:20:32 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/05/29 11:02:10 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:04:12 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ char	*trim_input(char *input)
 	return (str);
 }
 
-/**/
+/*copying character to a new string, skipping consecutive whitespaces,
+and preserving quoted sections intact*/
 void	process_input(char *input, char *str, int *i, int *j)
 {
 	while (input[*i])

@@ -6,7 +6,7 @@
 #    By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/14 08:50:20 by beredzhe          #+#    #+#              #
-#    Updated: 2024/05/25 15:25:12 by beredzhe         ###   ########.fr        #
+#    Updated: 2024/06/02 10:38:06 by beredzhe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRC =		ft_isalpha.c \
 			ft_putendl_fd.c \
 			ft_putnbr_fd.c \
 			ft_memdel.c \
+			ft_strcmp.c \
 
 BONUS	=	ft_lstnew.c \
 			ft_lstadd_front.c \
@@ -63,7 +64,6 @@ BONUS	=	ft_lstnew.c \
 			ft_lstmap.c \
 
 OBJ		=	$(SRC:.c=.o)
-
 B_OBJ 	=	$(BONUS:.c=.o)
 
 all:		$(NAME)
@@ -81,8 +81,8 @@ clean:
 	@rm -rf $(OBJ)	$(B_OBJ)
 
 fclean: clean
-	@rm -rf $(NAME)
+	@rm -f $(NAME)
 
-re: fclean allx§
+re: fclean all
 
 .PHONY: all bonus clean fclean re

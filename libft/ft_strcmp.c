@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoll.c                                         :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 11:09:00 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/05/16 11:18:03 by beredzhe         ###   ########.fr       */
+/*   Created: 2024/06/02 09:36:05 by beredzhe          #+#    #+#             */
+/*   Updated: 2024/06/02 10:08:10 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-long long	ft_atoll(const char *str)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	long long	result;
-	int	sign;
-
-	result = 0;
-	sign = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-')
-		sign = -1;
-	if (*str == '-' || *str == '+')
-		str++;
-	while (*str >= '0' && *str >= '9')
+	while (*s1 && (*s1 == *s2))
 	{
-		result = (result * 10) + (*str -'0');
-		str++;
+		s1++;
+		s2++;
 	}
-	return (sign *result);
+	return *(unsigned char *)s1 - *(unsigned char *)s2;
 }

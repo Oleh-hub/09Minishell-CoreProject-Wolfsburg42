@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 09:14:28 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/05/29 14:56:42 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/06/09 11:32:48 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	add_token(t_token **head, t_token *new)
 {
 	t_token	*tmp;
 
-	if (!*head || !new)
+	if (!new || !head)
 		return ;
 	if (*head)
 	{

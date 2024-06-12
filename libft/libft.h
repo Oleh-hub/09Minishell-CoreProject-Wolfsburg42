@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 21:14:20 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/05/21 12:29:27 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/06/09 11:26:28 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), \
 				void (*del)(void *));
 
 /*extra functions*/
-void	ft_memdel(void **ap); // it frees a block of memory and its pointer to NULL
+void	ft_memdel(char **ap); // it frees a block of memory and its pointer to NULL
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif

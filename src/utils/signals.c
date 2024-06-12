@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 09:46:20 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/05/24 09:55:49 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/06/09 11:28:16 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	handle_d(t_data *data, char *input)
 	}
 	if (ft_strlen(input) == 0)
 	{
-		ft_memdel((void *)&input);
+		ft_memdel(&input);
 		return (1);
 	}
 	return (0);

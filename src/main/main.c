@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:29:53 by oruban            #+#    #+#             */
-/*   Updated: 2024/05/25 14:12:10 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/06/09 13:26:36 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,8 @@ int	main(int argc, char *argv[], char *envp[])
 	data = NULL;
 	env = NULL;
 	
-	init_data((&data), envp);
+	init_data(&(data), envp);
 	minishell_loop(data);
-	
+	free_data(data);
 	return (0);
 }
-
-// int	main()
-// {
-// 	char	*input;
-
-// 	while (1)
-// 	{
-// 		input = readline("minishell$ ");
-// 		if (!input)
-// 			break;
-// 		if (*input)
-// 			add_history(input);
-// 		printf("Input: %s\n", input);
-// 		free(input);
-// 	}
-// 	return 0;
-// }
