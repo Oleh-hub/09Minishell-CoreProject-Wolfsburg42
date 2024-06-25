@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   commands.c                                         :+:      :+:    :+:   */
+/*   tree_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 18:41:40 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/25 19:47:57 by oruban           ###   ########.fr       */
+/*   Created: 2024/06/24 09:12:37 by beredzhe          #+#    #+#             */
+/*   Updated: 2024/06/24 09:15:48 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_envir	*find_envir_variable(t_data *data, char *var_name, int len)
+t_tree	*init_tree_root(void)
 {
-	t_envir	*current;
+	t_tree	*tree;
 
-	current = data->env_list;
-	while (current)
-	{
-		if (ft_strncmp(current->var_name, var_name, len) == 0)
-			return (current);
-		current = current->next;
-	}
-	return (NULL);
+	tree = malloc(sizeof(t_tree));
+	if (!tree)
+		return (NULL);
+	tree->type = 0;
+	tree->value = NULL;
+	tree->args_array = NULL;
+	tree->left = NULL;
+	tree->right = NULL;
+	return (tree);
 }

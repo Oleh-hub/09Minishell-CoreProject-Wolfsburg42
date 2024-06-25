@@ -6,16 +6,36 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 10:30:58 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/05/25 12:40:31 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/06/24 21:39:10 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int has_unclosed_quotes(char *str)
+void	find_quotes(char **str, t_data *data)
 {
-	char last_opened;
-	
+	char	*temp;
+
+	temp = NULL;
+	while (*str)
+	{
+		if (has_quotes(*str) || has_dollar(*str))
+		{
+			temp = expand_quotes(data, *str);
+			if (!temp)
+				return ;
+			ft_memdel(&(*str));
+			*str = ft_strdup(temp);
+			ft_memdel(&temp);
+		}
+		str++;
+	}
+}
+
+int	has_unclosed_quotes(char *str)
+{
+	char	last_opened;
+
 	last_opened = 0;
 	while (*str)
 	{
@@ -31,9 +51,9 @@ int has_unclosed_quotes(char *str)
 	if (last_opened != 0)
 	{
 		ft_putstr_fd("Close the quote!\n", STDERR_FILENO);
-		return 1;
+		return (1);
 	}
-	return 0;
+	return (0);
 }
 
 /*Check_d_quote is used to find a closing double quote
@@ -44,50 +64,50 @@ updates the index *i to the position of the closing double quote
 position is within the quotes or if a closing quote was found.*/
 int	check_d_quote(char *s, int *i, int pos)
 {
-	int	d_quote;
+	int	double_q;
 	int	j;
 
 	j = *i + 1;
-	d_quote = 1;
+	double_q = 1;
 	while (s[j])
 	{
 		if (s[j] == '\"')
 		{
-			d_quote = 0;
+			double_q = 0;
 			if (pos > *i && pos < j)
 				return (2);
 			else
-				break;
+				break ;
 		}
 		else
 			j++;
 	}
 	*i = j;
-	return (d_quote);
+	return (double_q);
 }
 
 int	check_s_quote(char *s, int *i, int pos)
 {
-	int	s_quote;
+	int	single_q;
 	int	j;
 
 	j = *i + 1;
-	s_quote = 1;
+	single_q = 1;
 	while (s[j])
 	{
-		if (s[j] == '\"')
+		if (s[j] == '\'')
 		{
-			s_quote = 0;
+			single_q = 0;
 			if (pos > *i && pos < j)
 				return (1);
 			else
-				break;
+				break ;
 		}
 		else
 			j++;
 	}
 	*i = j;
-	return (s_quote);
+	return (single_q);
 }
 
 /*Checks if a specific position in a string is within a quoted section*/

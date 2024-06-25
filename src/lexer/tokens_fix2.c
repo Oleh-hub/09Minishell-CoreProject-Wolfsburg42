@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 11:36:47 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/09 13:32:08 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/06/25 11:05:56 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ void	fix_tokens(t_token **head, t_data *data)
 	find_three_out(head);
 	find_three_in(head);
 	find_asterisk(head, data);
-	print_tokens(data);
 }
 
 void	find_append(t_token *current)
 {
 	t_token	*tmp;
 	t_token	*tmp2;
-	
+
 	tmp = current;
 	if (tmp->type == T_REDIR_OUTPUT && tmp->next->type == T_REDIR_OUTPUT)
 	{
@@ -70,7 +69,7 @@ void	find_in_out(t_token **head)
 /*remove tokens that have an empty string as their
 'word' attribute, provided ther are not of the type 
 'T_PARENTHESES'*/
-void clean_null_tokens(t_token **head)
+void	clean_null_tokens(t_token **head)
 {
 	t_token	*current;
 	t_token	*tmp;
@@ -96,7 +95,6 @@ void clean_null_tokens(t_token **head)
 	}
 }
 
-/**/
 void	find_asterisk(t_token **head, t_data *data)
 {
 	t_token	*current;

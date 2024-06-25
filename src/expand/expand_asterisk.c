@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 11:15:17 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/10 10:03:33 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/06/25 10:23:14 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,8 @@ void	update_asterisk_token(t_token *token, t_data *data)
 {
 	char	*temp;
 	int		i;
-	int		count;
 
 	i = 0;
-	count = 0;
-
-	while (data->root_directory[count])
-		count++;
 	ft_memdel(&token->word);
 	while (data->root_directory[i])
 	{
@@ -36,12 +31,9 @@ void	update_asterisk_token(t_token *token, t_data *data)
 			ft_memdel(&token->word);
 			token->word = temp;
 		}
-		if (i < count - 1)
-		{
-			temp = ft_strjoin(token->word, " ");
-			ft_memdel(&token->word);
-			token->word = temp;
-		}
+		temp = ft_strjoin(token->word, " ");
+		ft_memdel(&token->word);
+		token->word = temp;
 		i++;
 	}
 }

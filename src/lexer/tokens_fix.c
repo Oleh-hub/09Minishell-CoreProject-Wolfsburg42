@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 10:00:47 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/09 11:45:16 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:19:14 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,33 +63,6 @@ void	find_and_tokens(t_token **head)
 	}
 }
 
-void	find_three_out(t_token **head)
-{
-	t_token	*current;
-	t_token	*tmp;
-	t_token	*tmp2;
-
-	current = *head;
-	while (current != NULL)
-	{
-		tmp = current;
-		if (tmp->type == T_REDIR_OUTPUT && tmp->next->type == T_REDIR_OUTPUT)
-			find_append(tmp);
-		if (tmp->type == T_APPEND && tmp->next->type == T_REDIR_OUTPUT)
-		{
-			tmp->type = T_THREE_OUT;
-			ft_memdel(&tmp->word);
-			tmp->word = ft_strdup(">>>");
-			tmp2 = tmp->next;
-			tmp->next = tmp->next->next;
-			tmp->next->prev = tmp;
-			ft_memdel(&tmp2->word);
-			free(tmp2);
-		}
-		current = current->next;
-	}
-}
-
 void	find_three_in(t_token **head)
 {
 	t_token	*current;
@@ -133,5 +106,32 @@ void	find_delim(t_token *current)
 		tmp->next->prev = tmp;
 		ft_memdel(&tmp2->word);
 		free(tmp2);
+	}
+}
+
+void	find_three_out(t_token **head)
+{
+	t_token	*current;
+	t_token	*tmp;
+	t_token	*tmp2;
+
+	current = *head;
+	while (current != NULL)
+	{
+		tmp = current;
+		if (tmp->type == T_REDIR_OUTPUT && tmp->next->type == T_REDIR_OUTPUT)
+			find_append(tmp);
+		if (tmp->type == T_APPEND && tmp->next->type == T_REDIR_OUTPUT)
+		{
+			tmp->type = T_THREE_OUT;
+			ft_memdel(&tmp->word);
+			tmp->word = ft_strdup(">>>");
+			tmp2 = tmp->next;
+			tmp->next = tmp->next->next;
+			tmp->next->prev = tmp;
+			ft_memdel(&tmp2->word);
+			free(tmp2);
+		}
+		current = current->next;
 	}
 }

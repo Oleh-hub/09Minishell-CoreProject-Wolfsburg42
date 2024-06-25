@@ -1,49 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quotes_utils.c                                     :+:      :+:    :+:   */
+/*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 13:28:39 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/24 12:45:44 by beredzhe         ###   ########.fr       */
+/*   Created: 2024/06/25 11:17:28 by beredzhe          #+#    #+#             */
+/*   Updated: 2024/06/25 11:17:42 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*checks if character is \*/
-int	is_escaped(char *s, int pos)
+int	only_spaces_parenth(char *str)
 {
-	int	n;
+	int	i;
 
-	n = 0;
-	while (pos >= 0 && s[pos] == '\\')
+	i = 0;
+	while (str[i])
 	{
-		n++;
-		pos--;
+		if (str[i] != ' ' && str[i] != '(' && str[i] != ')')
+			return (0);
+		i++;
 	}
-	return (n % 2);
+	return (1);
 }
 
-int	has_quotes(char *str)
+int	token_len(t_token *token)
 {
-	while (*str)
-	{
-		if (*str == '\"' || *str == '\'')
-			return (1);
-		str++;
-	}
-	return (0);
-}
+	int	len;
 
-int	has_dollar(char *str)
-{
-	while (*str)
+	len = 0;
+	while (token)
 	{
-		if (*str == '$')
-			return (1);
-		str++;
+		if (token->type != T_NEWLINE)
+			len++;
+		token = token->next;
 	}
-	return (0);
+	return (len);
 }

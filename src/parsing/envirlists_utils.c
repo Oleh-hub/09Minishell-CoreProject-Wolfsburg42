@@ -1,49 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quotes_utils.c                                     :+:      :+:    :+:   */
+/*   envirlists_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 13:28:39 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/24 12:45:44 by beredzhe         ###   ########.fr       */
+/*   Created: 2024/06/24 21:08:15 by beredzhe          #+#    #+#             */
+/*   Updated: 2024/06/24 21:11:10 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*checks if character is \*/
-int	is_escaped(char *s, int pos)
+void	ft_envclear(t_envir **lst)
 {
-	int	n;
+	t_envir	*next;
 
-	n = 0;
-	while (pos >= 0 && s[pos] == '\\')
+	if (!lst || !*lst)
+		return ;
+	while (*lst)
 	{
-		n++;
-		pos--;
+		next = (*lst)->next;
+		ft_envdelone(*lst, free);
+		*lst = next;
 	}
-	return (n % 2);
 }
 
-int	has_quotes(char *str)
+void	ft_envdelone(t_envir *lst, void (*del))
 {
-	while (*str)
-	{
-		if (*str == '\"' || *str == '\'')
-			return (1);
-		str++;
-	}
-	return (0);
-}
-
-int	has_dollar(char *str)
-{
-	while (*str)
-	{
-		if (*str == '$')
-			return (1);
-		str++;
-	}
-	return (0);
+	if (!lst || !del)
+		return ;
+	if (lst->var_name)
+		free(lst->var_name);
+	if (lst->var_value)
+		free(lst->var_value);
+	free(lst);
 }

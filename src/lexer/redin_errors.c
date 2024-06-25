@@ -6,13 +6,13 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:03:39 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/11 13:04:35 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/06/21 07:41:37 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int check_red(t_token *token, char *str)
+int	check_red(t_token *token, char *str)
 {
 	if (!ft_strcmp(str, ">>>"))
 		if (check_threeout(token))
@@ -23,7 +23,7 @@ int check_red(t_token *token, char *str)
 	if (!ft_strcmp(str, "<<"))
 		if (check_delim(token))
 			return (1);
-	if (!ft_strcmp(str,">>"))
+	if (!ft_strcmp(str, ">>"))
 		if (check_append(token))
 			return (1);
 	if (!ft_strcmp(str, "<"))
@@ -45,11 +45,11 @@ int	check_redin_first_half(t_token *token)
 		if (token->next->next->type == T_PIPE
 			|| token->next->next->type == T_OR)
 			return (printf("minishell: syntax error near %s\n", \
-			"unexpected token `<|'"), 1);
+			"unexpected token `>|'"), 1);
 		if (token->next->next->type == T_AND
 			|| token->next->next->type == T_AMPER)
 			return (printf("minishell: syntax error near %s\n", \
-			"unexpected token `<&'"), 1);
+			"unexpected token `>&'"), 1);
 		if (token->next->next->type == T_REDIR_OUTPUT
 			|| token->next->next->type == T_APPEND
 			|| token->next->next->type == T_THREE_OUT)

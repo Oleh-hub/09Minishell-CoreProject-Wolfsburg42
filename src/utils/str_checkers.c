@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:20:32 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/07 10:04:12 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/06/20 13:56:46 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	process_input(char *input, char *str, int *i, int *j)
 	{
 		while (in_quotes(input, *i) != 0 && input[*i])
 			str[(*j)++] = input[(*i)++];
-		while ((input[*i] == ' ' || input[*i] == '\t') && (input[*i + 1] == ' ' \
-			|| input[*i + 1] == '\t'))
+		while ((input[*i] == ' ' || input[*i] == '\t')
+			&& (input[*i + 1] == ' ' || input[*i + 1] == '\t'))
 			(*i)++;
 		str[(*j)++] = input[(*i)++];
 	}
@@ -53,7 +53,7 @@ void	process_input(char *input, char *str, int *i, int *j)
 /**/
 int	ft_is_in_str(char c, char *str)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (str[i])

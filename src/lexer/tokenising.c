@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:18:57 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/09 11:34:00 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/06/25 09:13:55 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,12 @@ t_token	*create_token(t_data *data, int i)
 
 	new = malloc(sizeof(t_token));
 	if (!new)
-		exit_shell("Error: Memory allocation failed\n", 1, data);
+		exit_shell("Error: malloc failed\n", 1, data);
 	new->word = ft_substr(data->input_line, i - data->count, data->count);
 	new->type = T_WORD;
 	data->count = 0;
 	return (new);
 }
-
 
 /*creates new token based on the provided word and type*/
 t_token	*create_arg_token(t_data *data, char *word, enum e_token_type type)
@@ -76,4 +75,13 @@ void	clean_space_tokens(t_token **head)
 		else
 			current = current->next;
 	}
+}
+
+void	fix_tokens_tree(t_token **head)
+{
+	find_or_tokens(head);
+	find_and_tokens(head);
+	find_in_out(head);
+	find_three_out(head);
+	find_three_in(head);
 }

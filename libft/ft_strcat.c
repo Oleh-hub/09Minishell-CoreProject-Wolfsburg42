@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_tree.c                                       :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 11:26:05 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/05/23 11:57:52 by beredzhe         ###   ########.fr       */
+/*   Created: 2024/06/18 09:40:51 by beredzhe          #+#    #+#             */
+/*   Updated: 2024/06/25 10:28:50 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-t_data *init_temp_data(void)
+char	*ft_strcat(char *dest, const char *src)
 {
-	t_data *temp_data;
+	char	*original_dest;
 
-	temp_data = malloc(sizeof(t_data));
-	temp_data->input_minishell = NULL;
-	return (temp_data);
+	original_dest = dest;
+	while (*dest)
+		dest++;
+	while (*src)
+		*dest++ = *src++;
+	*dest = '\0';
+	return (original_dest);
 }

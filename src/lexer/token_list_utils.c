@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 09:14:28 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/09 11:32:48 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/06/25 09:14:14 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,15 @@ void	add_token(t_token **head, t_token *new)
 }
 
 /*finds last token*/
-t_token	*last_token(t_token *list)
+t_token	*last_token(t_token *lst)
 {
-	t_token	*tmp;
-	
-	tmp = list;
-	if (tmp != NULL)
-	{
-		while (tmp->next)
-			tmp = tmp->next;
-	}
-	return (tmp);
-}
+	t_token	*node;
 
+	node = lst;
+	if (node != NULL)
+	{
+		while (node->next != NULL)
+			node = node->next;
+	}
+	return (node);
+}

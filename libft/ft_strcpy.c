@@ -1,49 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quotes_utils.c                                     :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 13:28:39 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/24 12:45:44 by beredzhe         ###   ########.fr       */
+/*   Created: 2024/06/18 09:25:20 by beredzhe          #+#    #+#             */
+/*   Updated: 2024/06/25 10:27:49 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-/*checks if character is \*/
-int	is_escaped(char *s, int pos)
+char	*ft_strcpy(char *dest, const char *src)
 {
-	int	n;
+	char	*original_dest;
 
-	n = 0;
-	while (pos >= 0 && s[pos] == '\\')
-	{
-		n++;
-		pos--;
-	}
-	return (n % 2);
-}
-
-int	has_quotes(char *str)
-{
-	while (*str)
-	{
-		if (*str == '\"' || *str == '\'')
-			return (1);
-		str++;
-	}
-	return (0);
-}
-
-int	has_dollar(char *str)
-{
-	while (*str)
-	{
-		if (*str == '$')
-			return (1);
-		str++;
-	}
-	return (0);
+	original_dest = dest;
+	if (!src || !dest)
+		return (NULL);
+	while (*src)
+		*dest++ = *src++;
+	*dest = '\0';
+	return (original_dest);
 }

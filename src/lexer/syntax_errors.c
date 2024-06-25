@@ -6,12 +6,14 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 11:15:54 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/12 08:06:45 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/06/25 09:33:13 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*scans the input command line for specific tokens and checks
+for syntax errors related to these tokens*/
 int	syntax_errors(t_token *token, t_data *data)
 {
 	char	*str;
@@ -36,8 +38,8 @@ int	syntax_errors(t_token *token, t_data *data)
 	return (0);
 }
 
-/*checks if the current position in the string matches specific token patterns
-and updates the index *i accordingly*/
+/*identify and handle various tokens, whic are crucial for
+correctly interpteting and executing user commands*/
 char	*check_first_half(char *str, int *i)
 {
 	if (*str == '|' && *(str + 1) == '|')
@@ -49,7 +51,7 @@ char	*check_first_half(char *str, int *i)
 	if (*str == '<' && *(str + 1) == '<' && *(str + 2) == '<'
 		&& *(str + 3) != '>')
 		return (*i += 3, "<<<");
-	if (*str == '>' && *(str + 1) == '>' && *(str + 2) == '>')
+	if ((*str == '>' && *(str + 1) == '>' && *(str + 2) == '>'))
 		return (*i += 3, ">>>");
 	if (*str == '>' && *(str + 1) == '>')
 		return (*i += 2, ">>");
@@ -77,7 +79,6 @@ char	*check_first_token(char *str, int *i)
 
 	while (*str)
 	{
-		printf("Input str is %s at index: %d\n", str, *i);
 		result = check_first_half(str, i);
 		if (result != NULL)
 			return (result);
@@ -90,7 +91,8 @@ char	*check_first_token(char *str, int *i)
 	return (NULL);
 }
 
-/*check for syntax errors related to the & and && tokens*/
+/*check for syntax errors related to the & and && tokens 
+"echo &>", &&&&*/
 int	check_and(t_token *token, char *str)
 {
 	if (!ft_strcmp(str, "&"))
@@ -106,9 +108,15 @@ int	check_and(t_token *token, char *str)
 		"unexpected token `&'"), 1);
 	}
 	if (!ft_strcmp(str, "&&"))
-		if ((token->type == T_AND && token->prev->type == T_AND)
-			|| (token->type == T_AND && token->next->type == T_AND))
-			return (printf("minishell: syntax error near %s\n", \
-			"unexpected token `&&'"), 1);
+	{
+		if ((token->prev != NULL && token->prev->type == T_AND
+				&& token->type == T_AND) || (token->next != NULL
+				&& token->next->type == T_AND && token->type == T_AND)
+			|| (token != NULL && token->type == T_AND))
+		{
+			return (printf("minishell: syntax error near %s\n",
+					"unexpected token `&&'"), 1);
+		}
+	}
 	return (0);
 }
