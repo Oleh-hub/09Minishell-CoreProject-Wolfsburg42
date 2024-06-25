@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:18:50 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/19 19:15:07 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/25 21:01:23 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	execute_export(t_data *data, t_tree *tree, int fd_out)
 
 void	handle_existing_variable(t_envir *temp, char *var_value)
 {
-	ft_strdel(&temp->var_value);
+	ft_memdel(&temp->var_value);
 	temp->var_value = ft_strdup(var_value);
 	if (temp->visible == 1)
 		temp->visible = 0;
@@ -57,7 +57,7 @@ void	handle_visible_variable(t_envir *temp)
 {
 	if (temp->visible == 0)
 		temp->visible = 1;
-	ft_strdel(&temp->var_value);
+	ft_memdel(&temp->var_value);
 	temp->var_value = ft_strdup("");
 }
 

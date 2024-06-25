@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 12:25:31 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/21 08:51:31 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/25 20:35:46 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	main(int argc, char **argv, char *envp[])
 	else
 		init_data(&(data), envp);
 	handle_signal();
-	start_loop(data);
+	// start_loop(data);
+	minishell_loop(data);
 	if (env)
 		free_2darray(env);
 	free_data(data);

@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 20:34:05 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/25 20:27:45 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/25 20:36:42 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	free_data(t_data *data)
 	if (data->token_list)
 		free_tokens(&data->token_list, free);
 	if (data->curr_dir)
-		ft_strdel(&data->curr_dir);
+		ft_memdel(&data->curr_dir);
 	if (data->input_line)
-		ft_strdel(&data->input_line);
+		ft_memdel(&data->input_line);
 	if (data->root_directory && *data->root_directory)
 		free_2darray(data->root_directory);
 	if (data->heredoc_file)
@@ -44,7 +44,7 @@ void	free_temp_data(t_data *data)
 	if (!data)
 		return ;
 	if (data->input_line)
-		ft_strdel(&data->input_line);
+		ft_memdel(&data->input_line);
 	if (data->token_list)
 		free_tokens(&data->token_list, free);
 	free(data);
@@ -61,7 +61,7 @@ void	free_tokens(t_token **begin, void (*del)(void *))
 	tmp = *begin;
 	while (tmp)
 	{
-		ft_strdel(&tmp->word);
+		ft_memdel(&tmp->word);
 		tmp2 = tmp->next;
 		free(tmp);
 		tmp = tmp2;

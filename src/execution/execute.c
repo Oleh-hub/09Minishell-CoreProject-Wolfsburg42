@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 18:00:44 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/21 11:58:02 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/25 20:58:19 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,3 +93,4 @@ int	evaluate_execution(t_data *data, t_tree *tree)
 			return (1);
 	return (0);
 } */
+

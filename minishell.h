@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/25 19:43:11 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/25 21:02:45 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -413,6 +413,12 @@ void	handle_atach_right(t_tokenise_tree *vars);
 void	ft_envclear(t_envir **lst);
 void	ft_envdelone(t_envir *lst, void (*del));
 
+/* envirlists_utils2.c */
+void		ft_enviter(t_envir *lst, int fd_out, void (*f)(t_envir *, int));
+t_envir		*ft_envlast(t_envir *lst);
+t_envir		*ft_envnew(void);
+int			ft_envsize(t_envir *lst);
+
 /*shlvl.c*/
 void	incr_shell_lvl(t_data *data);
 
@@ -432,6 +438,88 @@ void	connect_nodes(t_tree **temp_redir, t_tree *temp2);
 
 /*join2d_arrays.c*/
 char	**join2darrays(char **str1, char **str2);
+
+/* environment.c */
+void		print_env_node(t_envir *env_node, int fd_out);
+void		print_env_node_sorted(t_envir *env_node, int fd_out);
+void		free_envir_array(char **env_array);
+
+/* execute_buildins.c */
+int			is_builtin(char *cmd);
+int			execute_builtin(t_data *data, t_tree *tree, int fd_out);
+int			check_echo(t_data *data, t_tree *tree, int fd_out);
+
+/* execute_buildins2.c */
+// char		*get_curr_dir(void);
+// char		*get_home_dir(void);
+int			execute_pwd(t_data *data);
+void		execute_exit(t_data *data, t_tree *tree); // does not return
+// anything to the programm, only to the system
+void		execute_env(t_envir **env, int fd_out);
+
+/* execute_buildins3.c */
+int			execute_cd(t_data *data, char *path);
+int			execute_unset(t_data *data, t_tree *tree);
+
+/* execute_export.c */
+int			execute_export(t_data *data, t_tree *tree, int fd_out);
+void		handle_existing_variable(t_envir *temp, char *var_value);
+void	handle_visible_variable(t_envir *temp);
+void		handle_new_variable(t_envir **env_list, char *var_name, \
+char *var_value);
+void		export(t_envir **env_list, char *var_name, char *var_value, \
+t_data *data);
+
+/* execute_echo.c */
+int			echo_handle_option(char **args);
+int			execute_echo(char *args[], int fd_out);
+
+/* execute.c */
+int			execute(t_data *data);
+int			execute_and_handle_files(t_data *data, t_tree *tree);
+int			evaluate_execution(t_data *data, t_tree *tree);
+// int			execute_logic(t_data *data, t_tree *tree); // || and && handling roi 0621
+
+/* execute_redout.c */
+int			get_output_file(t_tree *tree);
+
+/* execute_redin.c */
+int			get_input_file(t_tree *tree);
+
+/* execute_word.c */
+int			execute_word(t_data *data, t_tree *tree, int fd_inp, int fd_out);
+int			execute_command(t_data *data, t_tree *tree, int fd_inp, int fd_out);
+char		**env(t_envir **lst);
+// void		fill_envp(char **envp, t_envir **lst); // roi 0623 made static
+// void		print2darray(char **array); // roi 0623 debuggin funciton
+
+/* execute_pipe.c */
+int			execute_pipe(t_data *data, t_tree *tree);
+
+/* execute_utils.c */
+// int			is_logic_root(t_tree *tree); // || and && handling roi 0621
+int			is_word_root(t_tree *tree);
+int			is_special_root(t_tree *tree);
+int			is_only_asterisks(char *str);
+
+/* execute_export_utils.c */
+// /* static  */int			handle_no_equal_sign(t_data *data, char *arg);
+// /* static */ int			handle_equal_sign(t_data *data, char *arg);
+// int			has_equal_sign(char *str);
+int			process_export_args(t_data *data, t_tree *tree);
+
+/* sorted_envir.c */
+t_envir		*copy_envir_list(t_envir *original);
+void		swap_nodes(t_envir *a, t_envir *b);
+// static void	sort_envir_list(t_envir *list);
+t_envir		*copy_and_sort_envir_list(t_envir *original);
+// void		fill_envp(char **envp, t_envir **lst); // roi 0623 double declaration
+
+/* envirlists_utils.c */
+void		ft_envadd_back(t_envir **lst, t_envir *new);
+void		ft_envadd_front(t_envir **lst, t_envir *new);
+void		ft_envclear(t_envir **lst);
+void		ft_envdelone(t_envir *lst, void (*del));
 
 extern pid_t	g_child_pid; //Store process ID
 

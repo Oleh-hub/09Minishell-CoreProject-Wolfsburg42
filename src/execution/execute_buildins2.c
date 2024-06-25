@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:13:44 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/12 07:32:04 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/25 20:37:48 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	execute_exit(t_data *data, t_tree *tree)
 	i = 0;
 	if (tree->args_array[1])
 	{
-		if (!ft_has_only_digit(tree->args_array[1]))
+		if (!ft_only_digit(tree->args_array[1]))
 		{
 			data->exit_status = 2;
 			printf("exit\nminishell: exit: %s: numeric argument required\n", \
