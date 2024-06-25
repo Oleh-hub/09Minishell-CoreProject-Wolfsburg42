@@ -6,11 +6,13 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:22:45 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/09 20:26:29 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/17 16:52:23 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+	// printf("\033[34mLooking for SEGFAULT\033[0m\n");
 
 /* Checking 
 typedef struct s_envir {
@@ -36,6 +38,7 @@ void out_t_envir(char *comment, t_envir *env_list)
 	}
 	printf("====>end struct s_envir\n");
 	printf("\033[0m");
+	printf("\n");
 }
 
 /*  Checking*/
@@ -56,7 +59,7 @@ void out_t_tree(char *comment, t_tree *tree)
 	{
 		printf("(t_token_type	*)tree->type		= %d\n", tree->type);
 		printf("(char		*)tree->value		= %s\n", tree->value);
-		printf("(char		*)tree->args_array	= %p\n", tree->args_array);
+		printf("(char		**)tree->args_array	= %p\n", tree->args_array);
 		if (tree->args_array)
 		{
 			int i = 0;
@@ -72,6 +75,7 @@ void out_t_tree(char *comment, t_tree *tree)
 	}
 	printf("====>end struct s_tree *tree\n");
 	printf ("\033[0m");
+	printf("\n");
 }
 
 /* Checking  */
@@ -127,3 +131,15 @@ void out_t_data_data(char *comment, t_data *data)
 	printf("====>end struct s_data\n");
 }
 
+/* roi 0614
+	printing out the 2d array 
+ */
+void out_oochar(char *comment, char **temp)
+{
+	printf ("\033[34m");
+	printf("==%s==>\n", comment);
+	while (*temp)
+		printf("'%s' ", *temp++);
+	printf ("\033[0m");
+	printf("\n");
+}
