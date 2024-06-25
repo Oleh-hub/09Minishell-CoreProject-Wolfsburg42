@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 19:14:56 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/17 18:38:01 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/12 07:25:04 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ and set data->exit_status
  */
 int	execute_builtin(t_data *data, t_tree *tree, int fd_out)
 {
-	//echo, echo -n done
 	if (!ft_strncmp(tree->args_array[0], "echo", 4))
 		return (data->exit_status = check_echo(data, tree, fd_out));
 	// cd done
@@ -43,7 +42,6 @@ int	execute_builtin(t_data *data, t_tree *tree, int fd_out)
 		return (data->exit_status = execute_pwd(data));
 	if (!ft_strcmp(tree->args_array[0], "export"))
 		return(data->exit_status = execute_export(data, tree, fd_out));
-	// unset done
 	if (!ft_strcmp(tree->args_array[0], "unset"))
 		return(data->exit_status = execute_unset(data, tree));
 	// env done
@@ -55,33 +53,3 @@ int	execute_builtin(t_data *data, t_tree *tree, int fd_out)
 	return (0);
 }
 
-/* 
-roi 0612
-
-if the command is 'echo' -> execute_echo() but if
-when tree->args_array[0] may be longer than 4 and contain 'echo' like 'echoolll'
- - 'echolllllllllll: command not found' is printed out
-I have to use ft_strncmp() because I am not sure that 
- */
-int	check_echo(t_data *data, t_tree *tree, int fd_out)
-{
-	// tracing:
-	// printf("==> check_echo tree->args_array[0]='%s'\n", tree->args_array[0]);
-	if (!ft_strcmp(tree->args_array[0], "echo"))
-	{
-		if (execute_echo(tree->args_array, fd_out))
-			return (1);
-	}
-	else
-	{
-		if (!ft_strncmp(tree->args_array[0], "echo", 4))
-		{
-			ft_putstr_fd("minishell: ", fd_out);
-			ft_putstr_fd(tree->args_array[0], fd_out);
-			ft_putstr_fd(": command not found\n", fd_out);
-			data->exit_status = 127;
-			return (1);
-		}
-	}
-	return (0);
-}

@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:13:44 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/12 07:32:04 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/11 20:48:55 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	execute_pwd(t_data *data)
 /*
 roi 0610
 Executs buiildin command 'exit' and sets data->exit_status;
-exit with sting argument causes error message and exit code 2.
 freeng data memallocacion b4 exiting grarantees link nodes 2 b freed as well.
 */
 void	execute_exit(t_data *data, t_tree *tree)

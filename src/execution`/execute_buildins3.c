@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 16:12:39 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/17 18:36:05 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/12 07:23:34 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,43 +90,4 @@ int	execute_cd(t_data *data, char *path)
 	if (validate_and_change_directory(path))
 		return (1);
 	return (update_pwd(data));
-}
-
-/* 
-	roi 06016
-	if there is an variable to unset - remove it from the list 't_envir'
-	changing the next prev pointers of left and right nodes and feeing the 
-	memory allocated for var_name and var_value
- */
-static void	remove_env_var(t_data *data, char *arg)
-{
-	t_envir	*env_var;
-	t_envir	*temp;
-
-	env_var = find_envir_variable(data, arg, ft_strlen(arg));
-	if (env_var)
-	{
-		temp = env_var;
-		if (env_var->prev)
-			env_var->prev->next = env_var->next;
-		if (env_var->next)
-			env_var->next->prev = env_var->prev;
-		ft_envdelone(temp, free);
- 	}
-}
-
-/* 
-	roi 0617
-	for every argument of 'unset' command check if it is a valid und deletes it
- */
-int	execute_unset(t_data *data, t_tree *tree)
-{
-	char	**args;
-	int		i;
-
-	i = 0;
-	args = tree->args_array;
-	while (args[++i])
-		remove_env_var(data, args[i]);
-	return (0);
 }
