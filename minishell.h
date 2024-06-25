@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/25 21:02:45 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/25 21:30:49 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -520,6 +520,16 @@ void		ft_envadd_back(t_envir **lst, t_envir *new);
 void		ft_envadd_front(t_envir **lst, t_envir *new);
 void		ft_envclear(t_envir **lst);
 void		ft_envdelone(t_envir *lst, void (*del));
+
+/* split_parenth.c */
+char		**split_parenth(char const *s, char c);
+
+/* tracing.c   */
+void		out_t_envir(char *comment, t_envir *env_list);
+void		out_t_tree(char *comment, t_tree *tree);
+void		out_t_data_data(char *comment, t_data *data);
+void		out_oochar(char *comment, char **temp);
+
 
 extern pid_t	g_child_pid; //Store process ID
 

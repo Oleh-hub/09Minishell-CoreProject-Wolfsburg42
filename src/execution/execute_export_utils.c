@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 09:41:00 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/19 19:52:25 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/25 21:28:15 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static int	handle_equal_sign(t_data *data, char *arg)
 	char	**temp;
 	int		result;
 
-	temp = ft_split_parenth(arg, '=');
+	temp = split_parenth(arg, '=');
 	// temp = ft_split(arg, '=');	// roi 0614
-	out_oochar("===>handle_equal_sign()", temp); // tracing
+	// out_oochar("===>handle_equal_sign()", temp); // tracing
 	result = 0;
 	if (temp[1] && !temp[2])
 	{
