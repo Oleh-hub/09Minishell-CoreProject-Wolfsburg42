@@ -6,14 +6,14 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:10:35 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/25 19:44:09 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/25 19:55:35 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "execute.h"
 
-int		minishell_loop(t_data *data)
+void		minishell_loop(t_data *data)
 {
 	char	*input;
 
