@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 08:46:39 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/23 20:30:50 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/26 15:34:32 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ pid_t	create_child_process(char **exec_path)
 	if (pid == -1)
 	{
 		perror("fork");
-		ft_strdel(exec_path);
+		ft_memdel(exec_path);
 	}
 	return (pid);
 }
@@ -67,7 +67,7 @@ void	execute_forked_command(t_data *data, t_tree *tree, char *exec_path)
 	if (execve(exec_path, tree->args_array, envp) == -1)
 	{
 		printf("execve failed\n");
-		ft_strdel(&exec_path);
+		ft_memdel(&exec_path);
 		data->exit_status = 127;
 		exit(127);
 	}
@@ -77,14 +77,14 @@ int	handle_exit_status(t_data *data, pid_t pid, int status, char **exec_path)
 {
 	if (g_child_pid == pid + 1)
 		return (data->exit_status = 130, g_child_pid = 0, \
-		ft_strdel(exec_path), 1);
+		ft_memdel(exec_path), 1);
 	else if (g_child_pid == pid + 2)
 		return (data->exit_status = 131, g_child_pid = 0, \
-		ft_strdel(exec_path), 1);
+		ft_memdel(exec_path), 1);
 	if (WIFEXITED(status))
 		return (data->exit_status = WEXITSTATUS(status), \
-		g_child_pid = 0, ft_strdel(exec_path), 1);
-	return (g_child_pid = 0, ft_strdel(exec_path), 0);
+		g_child_pid = 0, ft_memdel(exec_path), 1);
+	return (g_child_pid = 0, ft_memdel(exec_path), 0);
 }
 
 int	fork_command(t_command_args *args)

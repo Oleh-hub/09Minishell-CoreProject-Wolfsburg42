@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 16:12:39 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/17 18:36:05 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/26 15:34:32 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static	int	update_pwd(t_data *data)
 		free(pwd_env->var_value);
 		pwd_env->var_value = NULL;
 	}
-	// ft_strdel(&pwd_env->var_value); 
+	// ft_memdel(&pwd_env->var_value); 
 	pwd_env->var_value = ft_strdup(cwd);
 	return (free(cwd), 0);
 }

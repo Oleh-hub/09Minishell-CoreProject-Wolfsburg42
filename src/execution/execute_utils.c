@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 18:37:37 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/21 10:05:15 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/26 15:30:38 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	is_word_root(t_tree *tree)
  */
 /* int	is_special_root(t_tree *tree)
 {
-	return (tree->type == T_RED_INP
-		|| tree->type == T_RED_OUT
+	return (tree->type == T_REDIR_INPUT
+		|| tree->type == T_REDIR_OUTPUT
 		|| tree->type == T_APPEND || tree->type == T_DELIM
 		|| tree->type == T_THREE_IN);
 } */

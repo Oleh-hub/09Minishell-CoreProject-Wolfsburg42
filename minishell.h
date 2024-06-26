@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/25 21:30:49 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/26 15:47:13 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,58 @@
 # include <errno.h> // defines macros for reporting and retrieving errors
 # include <stdbool.h> // boolean type
 
+/* 
+	roi 0612
+	enumarated every token just for cnovenience
+ */
 typedef enum e_token_type
 {
-	T_WORD = 1,
-	T_NEWLINE, /*\n*/
-	T_SPACE, /*' '*/
-	T_DOLLAR, /*$*/
-	T_AMPER, /*&*/
-	T_REDIR_INPUT, /*<*/
-	T_REDIR_OUTPUT, /*>*/
-	T_THREE_IN, /*<<<*/
-	T_THREE_OUT, /*>>>*/
-	T_IN_OUT, /*<>*/
-	T_APPEND, /*>>*/
-	T_PIPE, /*|*/
-	T_OR, /*||*/
-	T_AND, /*&&*/
-	T_DELIM, /*<<*/
-	T_PARENTHESES /*()*/
-}				t_token_type;
+	T_WORD			= 1,
+	T_NEWLINE		= 2,	/*\n*/
+	T_SPACE			= 3,	/*' '*/
+	T_DOLLAR		= 4,	/*$*/
+	T_AMPER			= 5,	/*&*/
+	T_REDIR_INPUT	= 6,	/*<*/
+	T_REDIR_OUTPUT	= 7,	/*>*/
+	T_THREE_IN		= 8,	/*<<<*/
+	T_THREE_OUT		= 9,	/*>>>*/
+	T_IN_OUT		= 10,	/*<>*/
+	T_APPEND		= 11,	/*>>*/
+	T_PIPE			= 12,	/*|*/
+	T_OR			= 13,	/*||*/
+	T_AND			= 14,	/*&&*/
+	T_DELIM			= 15,	/*<<*/
+	T_PARENTHESES	= 16	/*()*/
+}			t_token_type;
+
+// typedef enum e_token_type
+// {
+// 	T_WORD = 1,
+// 	T_NEWLINE, /*\n*/
+// 	T_SPACE, /*' '*/
+// 	T_DOLLAR, /*$*/
+// 	T_AMPER, /*&*/
+// 	T_REDIR_INPUT, /*<*/
+// 	T_REDIR_OUTPUT, /*>*/
+// 	T_THREE_IN, /*<<<*/
+// 	T_THREE_OUT, /*>>>*/
+// 	T_IN_OUT, /*<>*/
+// 	T_APPEND, /*>>*/
+// 	T_PIPE, /*|*/
+// 	T_OR, /*||*/
+// 	T_AND, /*&&*/
+// 	T_DELIM, /*<<*/
+// 	T_PARENTHESES /*()*/
+// }				t_token_type;
+
+/* roi 0607
+lis
+char			*var_name;	//env NAME
+char			*var_value;	//env VALUE
+int				visible;	// if visible =1 it can me seen by 'env', 
+							// otherwise -> only by 'export'
+							// Asumption: It may not in a child
+	*/
 
 typedef struct s_envir 
 {
@@ -70,6 +103,16 @@ typedef struct s_envir
 	struct s_envir	*prev;
 }				t_envir;
 
+
+/* 
+	roi 0609
+	the elemetn 'char *value' is a bit excessive, because it is always equal to
+	'char	*args_array[1]'
+
+	char			*value;			// value  always == args_array[0]
+	char			**args_array;	// command with all arguments like 
+									//'cd /home/username jkl'
+ */
 typedef struct s_tree
 {
 	t_token_type	type;
@@ -151,6 +194,33 @@ typedef struct s_tokenise_tree
 	t_data	*temp_data;
 	t_token	*new_tokens;
 }				t_tokenise_tree;
+
+/* 
+	roi 0621
+	strucnture needed for pipe '|' handling
+ */
+typedef struct s_pipe_info
+{
+	int		*pipe_fd;
+	t_data	*data;
+	t_tree	*tree;
+	int		end;
+	int		std_fd;
+}				t_pipe_info;
+
+/* 
+	roi 0626
+	strucnture created to facilitate execute_command() function
+	that execting the external shell command
+ */
+typedef struct s_command_args
+{
+	t_data	*data;
+	t_tree	*tree;
+	char	*exec_path;
+	int		fd_inp;
+	int		fd_out;
+}				t_command_args;
 
 /*Loop into the minishell program*/
 void	minishell_loop(t_data *data);
@@ -530,6 +600,22 @@ void		out_t_tree(char *comment, t_tree *tree);
 void		out_t_data_data(char *comment, t_data *data);
 void		out_oochar(char *comment, char **temp);
 
+/* execute_pipe_utils.c */
+void		create_pipe_and_check(int pipe_fd[2]);
+void		close_pipe(int pipe_fd[2]);
+
+/* commands.c */
+void		free_paths(char **paths, char **original_paths);
+char		*find_executable_path(t_data *data, char *cmd);
+t_envir		*find_envir_variable(t_data *data, char *var_name, int len);
+
+/* execute_word_utils.c */
+pid_t		create_child_process(char **exec_path);
+void		redirect_fds(int fd_inp, int fd_out);
+void		execute_forked_command(t_data *data, t_tree *tree, char *exec_path);
+int			handle_exit_status(t_data *data, pid_t pid, int status, \
+char **exec_path);
+int			fork_command(t_command_args *args);
 
 extern pid_t	g_child_pid; //Store process ID
 

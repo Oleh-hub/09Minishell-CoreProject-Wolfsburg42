@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 10:55:12 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/25 20:19:33 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/26 15:34:32 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	add_heredoc_file(t_data *data, char *filename, int id)
 void	free_heredoc_info(t_heredoc_info *info)
 {
 	if (info->filename)
-		ft_memdel(&info->filename); // instead of ft_strdel(&info->filename); roi 0625
+		ft_memdel(&info->filename); // instead of ft_memdel(&info->filename); roi 0625
 	if (info->limiter)
 		ft_memdel(&info->limiter);
 	if (info->token)

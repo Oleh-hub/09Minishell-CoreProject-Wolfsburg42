@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 21:25:56 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/25 21:27:27 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/26 15:34:32 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	process_array_element(char **arr, int *i)
 	if (arr[*i][0] == '\"' || arr[*i][0] == '\'')
 	{
 		temp = ft_substr(arr[*i], 1, ft_strlen(arr[*i]) - 2);
-		ft_strdel(&arr[*i]);
+		ft_memdel(&arr[*i]);
 		arr[*i] = ft_strdup(temp);
 		free(temp);
 	}

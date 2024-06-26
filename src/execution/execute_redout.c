@@ -28,7 +28,7 @@ int	get_output_file(t_tree *tree)
 	while (curr && curr->type != T_NEWLINE)
 	{
 		file_name = ft_strdup(curr->value);
-		if (curr->type == T_RED_OUT)
+		if (curr->type == T_REDIR_OUTPUT)
 		{
 			fd = open_file(file_name, O_WRONLY | O_CREAT | O_TRUNC);
 			update_last_fd(&last_fd, fd);
@@ -38,7 +38,7 @@ int	get_output_file(t_tree *tree)
 			fd = open_file(file_name, O_WRONLY | O_CREAT | O_APPEND);
 			update_last_fd(&last_fd, fd);
 		}
-		ft_strdel(&file_name);
+		ft_memdel(&file_name);
 		curr = curr->right;
 	}
 	return (last_fd);
