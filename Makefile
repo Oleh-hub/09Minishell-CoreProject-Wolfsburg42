@@ -6,21 +6,24 @@
 #    By: oruban <oruban@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/25 15:10:17 by beredzhe          #+#    #+#              #
-#    Updated: 2024/06/25 19:43:44 by oruban           ###   ########.fr        #
+#    Updated: 2024/06/26 19:29:03 by oruban           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	minishell
 
 # List all source files
-SRCS	=	$(wildcard src/main/*.c) \
-			$(wildcard src/utils/*.c) \
-			$(wildcard src/lexer/*.c) \
-			$(wildcard src/expand/*.c) \
-			$(wildcard src/parenthesis/*.c) \
-			$(wildcard src/execution/*.c) \
-			$(wildcard src/parsing/*.c) \
-			$(wildcard src/tree/*.c) \
+# SRCS	=	$(wildcard src/main/*.c) \
+# 			$(wildcard src/utils/*.c) \
+# 			$(wildcard src/lexer/*.c) \
+# 			$(wildcard src/expand/*.c) \
+# 			$(wildcard src/parenthesis/*.c) \
+# 			$(wildcard src/execution/*.c) \
+# 			$(wildcard src/parsing/*.c) \
+# 			$(wildcard src/tree/*.c) \
+# 			$(wildcard src/debug/*.c) \
+
+SRCS	=	$(shell find src -name '*.c')
 
 # Generate object files names
 OBJ_DIR	=	obj
@@ -71,4 +74,8 @@ $(OBJ_DIR):
 leak: all
 	valgrind --suppressions=./local.supp --leak-check=full \
 	--show-leak-kinds=all --track-fds=yes --trace-children=yes ./$(NAME)
+
+prn:
+	@echo $(SRCS)
+# @echo $(OBJS)
 
