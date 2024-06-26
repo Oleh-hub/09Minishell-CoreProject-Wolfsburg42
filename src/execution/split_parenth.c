@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 21:25:56 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/26 15:34:32 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/26 16:08:55 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static int	ft_countarr(const char *s, char c)
 	return (count);
 }
 
-static int	ft_arrarr(char **arr, const char *s, char c, int str)
+// static int	ft_arrarr(char **arr, const char *s, char c, int str)
+static int	ft_arrarr(char **arr, char *s, char c, int str)
 {
 	int	ai;
 	int	zi;
@@ -71,7 +72,8 @@ static void	process_array_element(char **arr, int *i)
 	(*i)++;
 }
 
-char	**split_parenth(char const *s, char c)
+// char	**split_parenth(char const *s, char c)
+char	**split_parenth(char *s, char c)
 {
 	char	**arr;
 	int		i;

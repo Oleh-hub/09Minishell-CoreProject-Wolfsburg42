@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 09:57:21 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/25 20:27:01 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/26 16:12:51 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 /* 
 	roi0610
-	frees all data allocation, prints error is any and exits with exit_code
- 	- free_data() is	freeing up all data allocation including one that are not 
+	frees all data allocation, prints error is any and exits with exit_code -
+	free_data() is	freeing up all data allocation including one that are not
 	freed by exit(), like list (data->env_list, etc)
 	- outputs error message to STDERR_FILENO
 	- exits with exit_code

@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/26 15:47:13 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/26 16:09:45 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -592,7 +592,8 @@ void		ft_envclear(t_envir **lst);
 void		ft_envdelone(t_envir *lst, void (*del));
 
 /* split_parenth.c */
-char		**split_parenth(char const *s, char c);
+// char		**split_parenth(char const *s, char c);
+char		**split_parenth(char *s, char c);
 
 /* tracing.c   */
 void		out_t_envir(char *comment, t_envir *env_list);
