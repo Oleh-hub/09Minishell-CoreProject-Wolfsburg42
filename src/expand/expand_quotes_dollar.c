@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_quotes_dollar.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 11:59:56 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/24 12:36:46 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/06/27 08:53:31 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*expand_quotes(t_data *data, char *s)
 	return (result);
 }
 
-char	*expand_double_quotes(t_data *data, char *s, int *i, char *result)
+char	*expand_d_quotes(t_data *data, char *s, int *i, char *result)
 {
 	char	*temp;
 
@@ -74,7 +74,7 @@ char	*expand_double_quotes(t_data *data, char *s, int *i, char *result)
 	return (result);
 }
 
-char	*expand_single_quotes(char *s, int *i, char *result)
+char	*expand_s_quotes(char *s, int *i, char *result)
 {
 	char	*temp;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 11:11:26 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/24 12:22:49 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/06/27 08:53:31 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*process_squote(char *s, int *i, char *result)
 		result = ft_strdup("");
 	}
 	else
-		result = expand_single_quotes(s, i, result);
+		result = expand_s_quotes(s, i, result);
 	return (result);
 }
 
@@ -32,7 +32,7 @@ char	*process_dquote(t_data *data, char *s, int *i, char *result)
 		result = ft_strdup("");
 	}
 	else
-		result = expand_double_quotes(data, s, i, result);
+		result = expand_d_quotes(data, s, i, result);
 	return (result);
 }
 

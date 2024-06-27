@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/26 16:09:45 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/27 09:03:42 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,9 @@ typedef struct s_data
 	char			**root_directory; /*while be used later for parcing part*/
 	char			*input_line; /*input after being processed*/
 	char			*exit_str;
+	int				cmd_nbrs;
+	int				arg_nums;
+	int				parenthesis_scope;
 
 }				t_data;
 
@@ -319,8 +322,8 @@ int		is_valid_env_char(char c);
 char	*expand_quotes(t_data *data, char *s);
 char	*expand_dollar_and_join(t_data *data, char *s, int *i, char *result);
 char	*expand_dollar(t_data *data, char *s, int *i);
-char	*expand_double_quotes(t_data *data, char *s, int *i, char *result);
-char	*expand_single_quotes(char *s, int *i, char *result);
+char	*expand_d_quotes(t_data *data, char *s, int *i, char *result);
+char	*expand_s_quotes(char *s, int *i, char *result);
 
 
 /*update_input_line.c*/
@@ -358,9 +361,6 @@ char	*update_aster_temp(char *temp, char *root_directory_k);
 void	check_matches(t_token *token, char **root_directory);
 char	*process_dquote(t_data *data, char *s, int *i, char *result);
 char	*process_squote(char *s, int *i, char *result);
-
-/*execution_utils.c*/
-int		is_only_asterisks(char *str);
 
 /*expand_asterisk.c*/
 void	update_asterisk_token(t_token *token, t_data *data);

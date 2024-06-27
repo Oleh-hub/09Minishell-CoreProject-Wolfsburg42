@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:22:45 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/17 16:52:23 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/27 08:53:31 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ void out_t_tree(char *comment, t_tree *tree)
 	t_heredoc_file	*heredoc_file;
 	t_envir			*env_list;
 	t_envir			*sorted_env_list;
-	int				single_quote;
-	int				double_quote;
+	int				s_quote;
+	int				d_quote;
 	long int		exit_status;
 	int				cmd_nbrs;
 	int				pid;
@@ -114,8 +114,8 @@ void out_t_data_data(char *comment, t_data *data)
 	if (data->env_list)
 		out_t_envir("data->env_list", data->env_list);
 	printf("(t_envir *) data->sorted_env_list	= %p\n", data->sorted_env_list);
-	printf("int data->single_quote			= %d\n", data->single_quote);
-	printf("(int) data->double_quote		= %d\n", data->double_quote);
+	printf("int data->s_quote			= %d\n", data->s_quote);
+	printf("(int) data->d_quote		= %d\n", data->d_quote);
 	printf("(long) int data->exit_status		= %ld\n", data->exit_status);
 	printf("(int) data->cmd_nbrs			= %d\n", data->cmd_nbrs);
 	printf("(int) data->pid				= %d\n", data->pid);

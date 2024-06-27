@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 07:33:26 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/12 07:34:18 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/27 08:58:50 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	is_chr_str(char c, char *str)
 }
 
 /* 
-roi 0611
+	roi 0611
 	if the string contains only digits, return 1, otherwise 0
  */
 int	ft_has_only_digit(char *str)

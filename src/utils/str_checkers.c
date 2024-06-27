@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_checkers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:20:32 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/20 13:56:46 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/06/27 09:00:09 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ int	ft_char_in_string(char c, char *str)
 	return (0);
 }
 
+/* 
+	roi 0611
+	if the string contains only digits, return 1, otherwise 0
+ */
 int	ft_only_digit(char *str)
 {
 	while (*str)
