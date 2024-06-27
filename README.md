@@ -152,9 +152,9 @@ ot interpret unclosed quotes or special characters which are not required by the
 - cat > >
 - > a ls > b < Makefile
 - echo > a Hello World!
-<=============3=====>
 - > a echo Hello World!
 - cat < Makefile | grep gcc > output
+!
 - exit 0 | exit 1
 - exit 1 | exit 0
 
