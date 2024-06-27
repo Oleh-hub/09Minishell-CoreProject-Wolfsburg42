@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 09:41:00 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/25 21:28:15 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/27 19:58:51 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static int	handle_no_equal_sign(t_data *data, char *arg)
 	'export olh=1 =srg = mom' case
 	// temp = ft_split_parenth(arg, '=');
 	temp = ft_split(arg, '=');	// roi 0614
+	export lol=lala ror=rara - done // roi 0627
  */
 static int	handle_equal_sign(t_data *data, char *arg)
 {
@@ -73,7 +74,9 @@ static int	handle_equal_sign(t_data *data, char *arg)
 	1. if there is '=' sign => handle_equal_sign()
 	otherwise => handle_no_equal_sign()
 
-	handling "export olh=1 =serg = mom"case
+	handling:
+	"export olh=1 =serg = mom"case
+	export lol=lala ror=rara - done
  */
 int	process_export_args(t_data *data, t_tree *tree)
 {
@@ -82,10 +85,16 @@ int	process_export_args(t_data *data, t_tree *tree)
 	i = 0;
 	while (tree->args_array[++i])
 	{
+		// printf("\033[34m tree->args_array[%d]		= %s\033[0m\n", i, tree->args_array[i]); // debugging
 		if (ft_strchr(tree->args_array[i], '='))
-			return (handle_equal_sign(data, tree->args_array[i]));
+			// out_t_tree("<===process_export_args()===>export lol=lala ror=rara", tree); //tracing roi0627 
+			{
+				if (handle_equal_sign(data, tree->args_array[i]))
+					return (1);
+			}
 		else
-			return (handle_no_equal_sign(data, tree->args_array[i]));
+			if (handle_no_equal_sign(data, tree->args_array[i]))
+				return (1);
 	}
 	return (0);
 }

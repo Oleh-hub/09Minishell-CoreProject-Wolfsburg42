@@ -127,8 +127,7 @@ ot interpret unclosed quotes or special characters which are not required by the
 - cd a b c d
 - pwd a
 - pwd a b c d
-! second varialbe is not exported ONLY in my case!!!!!!!!!
-- export LOL=lala ROR=rara
+- export lol=lala ror=rara
 - unset LOL ROR
 - export "HI= hi"
 !
