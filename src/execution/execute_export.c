@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:18:50 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/25 21:01:23 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/01 20:07:18 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	execute_export(t_data *data, t_tree *tree, int fd_out)
 		return (process_export_args(data, tree));
 	else
 	{
-		// out_t_envir("==>execute_export==b4copy_and_sort_envir_list\n ", data->env_list); // tracing
+		// out_t_envir("==>execute_export==b4\n ", data->env_list); // tracing
 		sorted = copy_and_sort_envir_list(data->env_list);
-		// out_t_envir("==>execute_export==AFTER copy_and_sort_envir_list\n ", sorted); // tracing
+		// out_t_envir("==>execute_export==AFTER\n ", sorted); // tracing
 		ft_enviter(sorted, fd_out, print_env_node_sorted);
 		return (ft_envclear(&sorted), 0);
 	}
@@ -76,21 +76,24 @@ void	handle_visible_variable(t_envir *temp)
 	NOTE:
 		visibility is the quality being seen by both env and export 
 		commands if 0 only export shos it
+
+	'	else
+	{	// if the variable is not visible: roi	'
 */
 void	handle_new_variable(t_envir **env_list, char *var_name, char *var_value)
 {
 	t_envir	*new_envir;
 
-	new_envir = ft_envnew(); 
+	new_envir = ft_envnew();
 	new_envir->var_name = ft_strdup(var_name);
-	if (!ft_strcmp(var_value, "visible")) 
+	if (!ft_strcmp(var_value, "visible"))
 	{
 		new_envir->visible = 1;
 		new_envir->var_value = ft_strdup("");
 		ft_envadd_back(env_list, new_envir);
 	}
 	else
-	{	// if the variable is not visible: roi
+	{
 		new_envir->var_value = ft_strdup(var_value);
 		ft_envadd_back(env_list, new_envir);
 		new_envir->visible = 0;

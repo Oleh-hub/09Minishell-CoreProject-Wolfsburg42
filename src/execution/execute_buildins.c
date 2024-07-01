@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 19:14:56 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/17 18:38:01 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/01 19:30:33 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ int	execute_builtin(t_data *data, t_tree *tree, int fd_out)
 	if (!ft_strcmp(tree->args_array[0], "pwd"))
 		return (data->exit_status = execute_pwd(data));
 	if (!ft_strcmp(tree->args_array[0], "export"))
-		return(data->exit_status = execute_export(data, tree, fd_out));
+		return (data->exit_status = execute_export(data, tree, fd_out));
 	// unset done
 	if (!ft_strcmp(tree->args_array[0], "unset"))
-		return(data->exit_status = execute_unset(data, tree));
+		return (data->exit_status = execute_unset(data, tree));
 	// env done
 	if (!ft_strcmp(tree->args_array[0], "env"))
 		execute_env(&data->env_list, fd_out);

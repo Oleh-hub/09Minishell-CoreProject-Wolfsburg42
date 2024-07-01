@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 16:12:39 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/26 15:34:32 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/01 20:02:05 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ static void	remove_env_var(t_data *data, char *arg)
 		if (env_var->next)
 			env_var->next->prev = env_var->prev;
 		ft_envdelone(temp, free);
- 	}
+	}
 }
 
 /* 

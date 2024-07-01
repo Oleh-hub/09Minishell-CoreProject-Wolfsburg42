@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:04:09 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/21 15:05:04 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/01 19:39:50 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,27 @@ int	execute_pipe(t_data *data, t_tree *tree)
 	if (WIFEXITED(status))
 		data->exit_status = WEXITSTATUS(status);
 	return (0);
+}
+
+/* 
+	roi
+	pipe creation 
+ */
+void	create_pipe_and_check(int pipe_fd[2])
+{
+	if (pipe(pipe_fd) == -1)
+	{
+		printf("minishell: pipe error\n");
+		exit(-1);
+	}
+}
+
+/* 
+	roi
+	pipe closing
+  */
+void	close_pipe(int pipe_fd[2])
+{
+	close(pipe_fd[0]);
+	close(pipe_fd[1]);
 }
