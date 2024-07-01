@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/01 17:08:17 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/01 19:41:49 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -565,6 +565,8 @@ char		**env(t_envir **lst);
 
 /* execute_pipe.c */
 int			execute_pipe(t_data *data, t_tree *tree);
+void		create_pipe_and_check(int pipe_fd[2]);
+void		close_pipe(int pipe_fd[2]);
 
 /* execute_utils.c */
 // int			is_logic_root(t_tree *tree); // || and && handling roi 0621
@@ -602,10 +604,6 @@ void		tree_out(t_tree *tree);
 void		out_t_data_data(char *comment, t_data *data);
 void		out_oochar(char *comment, char **temp);
 
-
-/* execute_pipe_utils.c */
-void		create_pipe_and_check(int pipe_fd[2]);
-void		close_pipe(int pipe_fd[2]);
 
 /* commands.c */
 void		free_paths(char **paths, char **original_paths);
