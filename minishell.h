@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/27 09:03:42 by oruban           ###   ########.fr       */
+/*   Updated: 2024/06/27 21:39:09 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,25 @@
 # define SA_SIGINFO 0
 #endif
 
-# define _POSIX_C_SOURCE 200809L
-# include <signal.h> // sigaction
-# include "libft/libft.h" // libft
-# include <stdio.h> // perror
-# include <readline/readline.h> // readline
-# include <readline/history.h> // history
-# include <stdlib.h> // getenv, EXIT_SUCCESS, EXIT_FAILURE
-# include <unistd.h> // getpwd
-# include <sys/wait.h> // waitpid
-# include <sys/stat.h> // stat
-# include <fcntl.h> // open flags
-# include <string.h>
-# include <termios.h> // POSIX terminal control definitions
-# include <dirent.h> // opening, reading directory
-# include <termcap.h> // terminal handling as terminal clearing
-# include <stdint.h>
-# include <limits.h> //INT_MAX
-# include <errno.h> // defines macros for reporting and retrieving errors
-# include <stdbool.h> // boolean type
+#define _POSIX_C_SOURCE 200809L
+#include <signal.h> // sigaction
+#include "libft/libft.h" // libft
+#include <stdio.h> // perror
+#include <readline/readline.h> // readline
+#include <readline/history.h> // history
+#include <stdlib.h> // getenv, EXIT_SUCCESS, EXIT_FAILURE
+#include <unistd.h> // getpwd
+#include <sys/wait.h> // waitpid
+#include <sys/stat.h> // stat
+#include <fcntl.h> // open flags
+#include <string.h>
+#include <termios.h> // POSIX terminal control definitions
+#include <dirent.h> // opening, reading directory
+#include <termcap.h> // terminal handling as terminal clearing
+#include <stdint.h>
+#include <limits.h> //INT_MAX
+#include <errno.h> // defines macros for reporting and retrieving errors
+#include <stdbool.h> // boolean type
 
 /* 
 	roi 0612
@@ -89,7 +89,7 @@ typedef enum e_token_type
 lis
 char			*var_name;	//env NAME
 char			*var_value;	//env VALUE
-int				visible;	// if visible =1 it can me seen by 'env', 
+int				visible;	// if visible =1 it can me seen by 'env',
 							// otherwise -> only by 'export'
 							// Asumption: It may not in a child
 	*/
@@ -110,7 +110,7 @@ typedef struct s_envir
 	'char	*args_array[1]'
 
 	char			*value;			// value  always == args_array[0]
-	char			**args_array;	// command with all arguments like 
+	char			**args_array;	// command with all arguments like
 									//'cd /home/username jkl'
  */
 typedef struct s_tree
@@ -122,7 +122,7 @@ typedef struct s_tree
 	struct s_tree	*right;
 }				t_tree;
 
-typedef struct s_heredoc_file 
+typedef struct s_heredoc_file
 {
 	int						id;
 	char					*filename;
