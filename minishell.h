@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/27 21:39:09 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:00:37 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -436,8 +436,8 @@ int		init_tree(t_data *data, t_token **head);
 int		init_tree_one_parenth(t_data *data, t_token **root_token, t_token **head);
 
 
-/*tree_utils.c*/
-t_tree	*init_tree_root(void);
+// /*tree_utils.c*/
+// t_tree	*init_tree_root(void);
 
 /*find_tree_roots.c*/
 t_token	*find_first_root(t_token **root_token);
@@ -454,7 +454,7 @@ int	is_char_in_str(char c, char *str);
 
 /*utils3.c*/
 int	only_spaces_parenth(char *str);
-int	token_len(t_token *token);
+/* int	token_len(t_token *token); */
 
 /*utils4.c*/
 char	**ft_split_args(char *s, char c);
@@ -528,7 +528,7 @@ void		execute_exit(t_data *data, t_tree *tree); // does not return
 void		execute_env(t_envir **env, int fd_out);
 
 /* execute_buildins3.c */
-int			execute_cd(t_data *data, char *path);
+/* int			execute_cd(t_data *data, char *path); */
 int			execute_unset(t_data *data, t_tree *tree);
 
 /* execute_export.c */
