@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:22:45 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/27 08:53:31 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/01 17:20:18 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,21 @@ void out_t_tree(char *comment, t_tree *tree)
 	printf ("\033[0m");
 	printf("\n");
 }
+
+/* recurction to garantee all nodes to tree being printed out */
+void tree_out(t_tree *tree)
+{
+	t_tree *tmp = tree;
+
+	if(!tmp)
+		return ;
+	tree_out(tmp->left);
+	printf("(char		*)tree->value		= %s\n", tmp->value);
+	printf("(struct s_tree	*)tree->left		= %p\n", tmp->left);
+	printf("(struct s_tree	*)tree->right		= %p\n", tmp->right);
+	tree_out(tmp->right);
+}
+
 
 /* Checking  */
 /* typedef struct s_data {

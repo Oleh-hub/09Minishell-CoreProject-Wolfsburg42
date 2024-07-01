@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/01 12:35:30 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/01 17:08:17 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -437,7 +437,7 @@ int		init_tree_one_parenth(t_data *data, t_token **root_token, t_token **head);
 
 
 // /*tree_utils.c*/
-// t_tree	*init_tree_root(void);
+t_tree	*init_tree_root(void);
 
 /*find_tree_roots.c*/
 t_token	*find_first_root(t_token **root_token);
@@ -528,7 +528,7 @@ void		execute_exit(t_data *data, t_tree *tree); // does not return
 void		execute_env(t_envir **env, int fd_out);
 
 /* execute_buildins3.c */
-/* int			execute_cd(t_data *data, char *path); */
+int			execute_cd(t_data *data, char *path);
 int			execute_unset(t_data *data, t_tree *tree);
 
 /* execute_export.c */
@@ -598,8 +598,10 @@ char		**split_parenth(char *s, char c);
 /* tracing.c   */
 void		out_t_envir(char *comment, t_envir *env_list);
 void		out_t_tree(char *comment, t_tree *tree);
+void		tree_out(t_tree *tree);
 void		out_t_data_data(char *comment, t_data *data);
 void		out_oochar(char *comment, char **temp);
+
 
 /* execute_pipe_utils.c */
 void		create_pipe_and_check(int pipe_fd[2]);

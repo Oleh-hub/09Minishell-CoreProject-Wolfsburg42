@@ -3,5 +3,7 @@ file
 *.o
 *.a
 minishell
+*.out
+*.txt
 # libft/*.o
 # libft/*.a

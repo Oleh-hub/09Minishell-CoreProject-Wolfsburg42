@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 18:00:44 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/25 20:58:19 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/01 17:45:28 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ int	execute_and_handle_files(t_data *data, t_tree *tree)
 }
 
 /* 
-roi  0608-21
+roi  0608-21 - 0701
+'minishell: syntax error near unexpected token `||''
+output should be implemented in case of '||' token 
  */
 int	evaluate_execution(t_data *data, t_tree *tree)
 {
@@ -67,7 +69,15 @@ int	evaluate_execution(t_data *data, t_tree *tree)
 		if (execute_logic(data, tree))
 			return (1); */
 	// printf("\n(t_token_type) data->token_list->type = %d\n", data->token_list->type); // debug 0621
-	// printf("\n(t_token_type) tree->type = %d\n", tree->type); // debug 0621
+	// printf("\n(t_token_	type) tree->type = %d\n", tree->type); // debug 0621
+	// {printf ("\033[31m evaluate_execution\n"); 	// debug 0701 || mistake handling
+	// tree_out(tree); 							// debug 0701
+	// printf("\033[0m\n");						// debug 0701}
+	if (tree->type == T_OR || tree->type == T_AND) // 0701
+	{
+		printf("minishell: syntax error near unexpected token `%s'\n", tree->value);
+		return (1);
+	}
 	if (tree->type == T_PIPE)
 		if (execute_pipe(data, tree))
 			return (1);
