@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:22:45 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/01 17:20:18 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/01 20:27:29 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_envir {
 	struct s_envir	*prev;
 }				t_envir; */
 
-void out_t_envir(char *comment, t_envir *env_list)
+void	out_t_envir(char *comment, t_envir *env_list)
 {
 	printf("\033[34m");
 	printf("====>start struct s_envir %s\n", comment);
@@ -51,8 +51,10 @@ void out_t_envir(char *comment, t_envir *env_list)
 	struct s_tree	*right;
 }				t_tree; */
 
-void out_t_tree(char *comment, t_tree *tree)
+void	out_t_tree(char *comment, t_tree *tree)
 {
+	int i;
+	
 	printf ("\033[34m");
 	printf("====>start struct s_tree %s\n", comment);
 	while (tree)
@@ -62,7 +64,7 @@ void out_t_tree(char *comment, t_tree *tree)
 		printf("(char		**)tree->args_array	= %p\n", tree->args_array);
 		if (tree->args_array)
 		{
-			int i = 0;
+			i = 0;
 			while (tree->args_array[i])
 			{
 				printf("tree->args_array[%d]		= %s\n", i, tree->args_array[i]);
