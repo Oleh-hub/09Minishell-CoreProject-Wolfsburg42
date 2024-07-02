@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/02 10:25:42 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/07/02 12:09:13 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,10 @@ typedef struct s_data
 	struct s_tree	*tree;
 	struct s_token	*token_list;
 	int				s_quote; /*shell is inside a single quoted string*/
+	int				d_quote;
 	t_heredoc_file	*heredoc_file;
 	t_envir			*env_list;
 	t_envir			*sorted_env_list;
-	int				d_quote;
 	long int		exit_status;
 	int				pid;
 	int				forked; /*manage parent and child process behaviors*/
@@ -208,9 +208,6 @@ typedef struct s_command_args
 void	minishell_loop(t_data *data);
 char	**create_envp(void);
 
-/*reset.c*/
-void	reset_data(t_data *data);
-
 /*find_token.c*/
 int		find_token(t_data *data, char *str, int *i, t_token **head);
 int		find_token2(int i, char *str, char *split);
@@ -253,6 +250,9 @@ void	free_tree(t_tree **tree);
 
 /*init_data.c*/
 void	init_data(t_data **data, char **envp);
+
+/*reset.c*/
+void	reset_data(t_data *data);
 
 /*signal.c*/
 void	handle_signal(void);

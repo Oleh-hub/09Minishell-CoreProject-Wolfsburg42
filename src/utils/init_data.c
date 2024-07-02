@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 11:36:01 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/25 10:51:11 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/07/02 12:13:04 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_data(t_data **data, char **envp)
 	(*data)->sorted_env_list = NULL;
 	(*data)->token_list = NULL;
 	(*data)->input_line = NULL;
+	(*data)->tree = NULL;
 	(*data)->root_directory = NULL;
 	(*data)->exit_status = 0;
 	(*data)->input_minishell = "minishell>> ";
