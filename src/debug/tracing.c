@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:22:45 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/02 16:32:51 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/02 18:04:57 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ void	out_t_tree(char *comment, t_tree *tree)
 {
 	int	i;
 
-	printf ("\033[34m");
-	printf("====>start struct s_tree %s\n", comment);
+	printf("\033[34m====>start struct s_tree %s\n", comment);
 	while (tree)
 	{
 		printf("(t_token_type	*)tree->type		= %d\n", tree->type);
@@ -76,8 +75,7 @@ void	out_t_tree(char *comment, t_tree *tree)
 		printf("(struct s_tree	*)tree->right		= %p\n", tree->right);
 		tree = tree->right;
 	}
-	printf("====>end struct s_tree *tree\n");
-	printf ("\033[0m");
+	printf("====>end struct s_tree *tree\033[0m\n");
 	printf("\n");
 }
 
@@ -122,12 +120,11 @@ void	tree_out(t_tree *tree)
 void	out_t_data_data(char *comment, t_data *data)
 {
 	printf("%s, t_data data\n", comment);
-	// printf("struct s_tree *tree		= %p %s\n", data->tree, comment);
 	printf("(struct s_tree *) data->tree		= %p\n", data->tree);
 	if (data->tree)
 		out_t_tree("*tree", data->tree);
 	printf("(struct s_token *) data->token_list	= %p\n", data->token_list);
-	printf("(t_heredoc_file *) data->heredoc_file	= %p\n", data->heredoc_file);
+	printf("(t_heredoc_file *) data->heredoc_file = %p\n", data->heredoc_file);
 	printf("(t_envir *) data->env_list		= %p\n", data->env_list);
 	if (data->env_list)
 		out_t_envir("data->env_list", data->env_list);
@@ -139,7 +136,7 @@ void	out_t_data_data(char *comment, t_data *data)
 	printf("(int) data->pid				= %d\n", data->pid);
 	printf("(int) data->count			= %d\n", data->count);
 	printf("(int) data->arg_nums			= %d\n", data->arg_nums);
-	printf("(int) data->parenthesis_scope		= %d\n", data->parenthesis_scope);
+	printf("(int) data->parenthesis_scope	= %d\n", data->parenthesis_scope);
 	printf("(int) data->forked			= %d\n", data->forked);
 	printf("(char *) data->input_minishell		= %s\n", data->input_minishell);
 	printf("(char *) data->input_line		= %s\n", data->input_line);
