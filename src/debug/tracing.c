@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:22:45 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/01 20:27:29 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/02 16:32:51 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	out_t_envir(char *comment, t_envir *env_list)
 
 void	out_t_tree(char *comment, t_tree *tree)
 {
-	int i;
-	
+	int	i;
+
 	printf ("\033[34m");
 	printf("====>start struct s_tree %s\n", comment);
 	while (tree)
@@ -67,7 +67,8 @@ void	out_t_tree(char *comment, t_tree *tree)
 			i = 0;
 			while (tree->args_array[i])
 			{
-				printf("tree->args_array[%d]		= %s\n", i, tree->args_array[i]);
+				printf("tree->args_array[%d]		= %s\n", i, \
+					tree->args_array[i]);
 				i++;
 			}
 		}
@@ -81,11 +82,12 @@ void	out_t_tree(char *comment, t_tree *tree)
 }
 
 /* recurction to garantee all nodes to tree being printed out */
-void tree_out(t_tree *tree)
+void	tree_out(t_tree *tree)
 {
-	t_tree *tmp = tree;
+	t_tree	*tmp;
 
-	if(!tmp)
+	tmp = tree;
+	if (!tmp)
 		return ;
 	tree_out(tmp->left);
 	printf("(char		*)tree->value		= %s\n", tmp->value);
@@ -93,7 +95,6 @@ void tree_out(t_tree *tree)
 	printf("(struct s_tree	*)tree->right		= %p\n", tmp->right);
 	tree_out(tmp->right);
 }
-
 
 /* Checking  */
 /* typedef struct s_data {
@@ -118,7 +119,7 @@ void tree_out(t_tree *tree)
 	char			*exit_str;
 }				t_data; */
 
-void out_t_data_data(char *comment, t_data *data)
+void	out_t_data_data(char *comment, t_data *data)
 {
 	printf("%s, t_data data\n", comment);
 	// printf("struct s_tree *tree		= %p %s\n", data->tree, comment);
@@ -151,7 +152,7 @@ void out_t_data_data(char *comment, t_data *data)
 /* roi 0614
 	printing out the 2d array 
  */
-void out_oochar(char *comment, char **temp)
+void	out_oochar(char *comment, char **temp)
 {
 	printf ("\033[34m");
 	printf("==%s==>\n", comment);

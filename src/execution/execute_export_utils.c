@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 09:41:00 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/01 20:13:05 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/02 16:35:51 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,11 @@ int	process_export_args(t_data *data, t_tree *tree)
 	{
 		// printf("\033[34m tree->args_array[%d]		= %s\033[0m\n", i, tree->args_array[i]); // debugging
 		if (ft_strchr(tree->args_array[i], '='))
-			{
-			// out_t_tree("<===process_export_args()===>export lol=lala ror=rara", tree); //tracing roi0627 
-				if (handle_equal_sign(data, tree->args_array[i]))
-					return (1);
-			}
+		{
+		// out_t_tree("<===process_export_args()===>export lol=lala ror=rara", tree); //tracing roi0627 
+			if (handle_equal_sign(data, tree->args_array[i]))
+				return (1);
+		}
 		else
 			if (handle_no_equal_sign(data, tree->args_array[i]))
 				return (1);
