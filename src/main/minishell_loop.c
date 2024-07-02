@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_loop.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:10:35 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/27 20:50:14 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/01 21:18:03 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "execute.h"
 
-void		minishell_loop(t_data *data)
+void	minishell_loop(t_data *data)
 {
 	char	*input;
 
@@ -35,7 +35,7 @@ void		minishell_loop(t_data *data)
 		if (init_tree(data, &data->token_list))
 			continue ;
 		fix_tree(&data->tree);
-		if (execute(data)) 
+		if (execute(data))
 			continue ;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 12:25:31 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/25 20:35:46 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/01 21:18:07 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,15 @@ int	main(int argc, char **argv, char *envp[])
 	(void)argv;
 	data = NULL;
 	env = NULL;
-	// printbanner(); //roi0606
 	if (!*envp)
 	{
 		env = create_envp();
 		init_data(&(data), env);
-		// find the shell level and set it to 1 //roi0616
 	}
 	else
 		init_data(&(data), envp);
 	handle_signal();
-	// start_loop(data);
+	sig_interactive();
 	minishell_loop(data);
 	if (env)
 		free_2darray(env);

@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 09:57:21 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/26 16:12:51 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/01 13:08:50 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 
@@ -29,4 +28,3 @@ void	exit_shell(char *message, int exit_code, t_data *data)
 	ft_putstr_fd("\n", STDERR_FILENO);
 	exit(exit_code);
 }
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 17:37:13 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/26 15:34:32 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/01 13:09:37 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_paths(char **paths, char **original_paths)
 	paths = original_paths;
 	while (*paths)
 	{
-		ft_memdel(paths);		//ft_memdel(paths); //roi 0625
+		ft_memdel(paths);
 		paths++;
 	}
 	free(original_paths);
@@ -74,8 +74,6 @@ t_envir	*find_envir_variable(t_data *data, char *var_name, int len)
 {
 	t_envir	*current;
 
-	// out_t_data_data("inside find_envir_variable()", data);
-	// out_t_envir("inside find_envir_variable()", data->env_list);
 	current = data->env_list;
 	while (current)
 	{
