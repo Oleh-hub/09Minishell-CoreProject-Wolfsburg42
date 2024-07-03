@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 09:46:20 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/25 11:00:07 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:40:50 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@ void	handle_signal(void)
 	struct sigaction	sa;
 
 	sa.sa_handler = handle_c;
-	sa.sa_flags = SA_RESTART | SA_SIGINFO;
 	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_RESTART;
 	sigaction(SIGINT, &sa, NULL);
-	sigaction(SIGTSTP, &sa, NULL);
 	sigaction(SIGQUIT, &sa, NULL);
 }
 
@@ -37,11 +36,14 @@ void	handle_sigint(int signo)
 			if (g_child_pid != 0 && g_child_pid != 44)
 			{
 				kill(g_child_pid, SIGINT);
+				printf("\n");
 				g_child_pid++;
 			}
 			else
 			{
+				write(STDOUT_FILENO, "\n", 1);
 				rl_on_new_line();
+				rl_replace_line("", 0);
 				rl_redisplay();
 			}
 		}
@@ -50,10 +52,10 @@ void	handle_sigint(int signo)
 	}
 }
 
-/*handle CTRL+Z and CTRL+\*/
-void	handle_sigtstp_sigquit(int signo)
+/*handle CTRL+\*/
+void	handle_sigquit(int signo)
 {
-	if (signo == SIGTSTP || signo == SIGQUIT)
+	if (signo == SIGQUIT)
 	{
 		if (isatty(STDIN_FILENO))
 		{
@@ -71,7 +73,7 @@ void	handle_sigtstp_sigquit(int signo)
 void	handle_c(int signo)
 {
 	handle_sigint(signo);
-	handle_sigtstp_sigquit(signo);
+	handle_sigquit(signo);
 }
 
 /*In summary, handle_d handles two special cases: 
@@ -84,8 +86,6 @@ int	handle_d(t_data *data, char *input)
 {
 	if (input == NULL)
 	{
-		rl_on_new_line();
-		rl_redisplay();
 		exit_shell("exit", 0, data);
 	}
 	if (ft_strlen(input) == 0)

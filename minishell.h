@@ -6,20 +6,20 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/01 19:41:49 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/03 19:08:46 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#ifndef SA_RESTART
-# define SA_RESTART 0
-#endif
+# ifndef SA_RESTART
+#  define SA_RESTART 0
+# endif
 
-#ifndef SA_SIGINFO
-# define SA_SIGINFO 0
-#endif
+# ifndef SA_SIGINFO
+#  define SA_SIGINFO 0
+# endif
 
 # define _POSIX_C_SOURCE 200809L
 # include <signal.h> // sigaction
@@ -65,44 +65,23 @@ typedef enum e_token_type
 	T_PARENTHESES	= 16	/*()*/
 }			t_token_type;
 
-// typedef enum e_token_type
-// {
-// 	T_WORD = 1,
-// 	T_NEWLINE, /*\n*/
-// 	T_SPACE, /*' '*/
-// 	T_DOLLAR, /*$*/
-// 	T_AMPER, /*&*/
-// 	T_REDIR_INPUT, /*<*/
-// 	T_REDIR_OUTPUT, /*>*/
-// 	T_THREE_IN, /*<<<*/
-// 	T_THREE_OUT, /*>>>*/
-// 	T_IN_OUT, /*<>*/
-// 	T_APPEND, /*>>*/
-// 	T_PIPE, /*|*/
-// 	T_OR, /*||*/
-// 	T_AND, /*&&*/
-// 	T_DELIM, /*<<*/
-// 	T_PARENTHESES /*()*/
-// }				t_token_type;
-
 /* roi 0607
 lis
 char			*var_name;	//env NAME
 char			*var_value;	//env VALUE
-int				visible;	// if visible =1 it can me seen by 'env', 
+int				visible;	// if visible =1 it can me seen by 'env',
 							// otherwise -> only by 'export'
 							// Asumption: It may not in a child
 	*/
 
-typedef struct s_envir 
+typedef struct s_envir
 {
-	char		*var_name;
-	char		*var_value;
-	int			visible;
-	struct s_envir	*next;
-	struct s_envir	*prev;
-}				t_envir;
-
+	char			*var_name; /*Name of the environment variable*/
+	char			*var_value; /*Value of environment variable*/
+	int				visible; /*Visibility flag*/
+	struct s_envir	*next; /*Pointer to the next environment variable*/
+	struct s_envir	*prev; /*Pointer to the previous environment variable*/
+}			t_envir;
 
 /* 
 	roi 0609
@@ -110,23 +89,23 @@ typedef struct s_envir
 	'char	*args_array[1]'
 
 	char			*value;			// value  always == args_array[0]
-	char			**args_array;	// command with all arguments like 
+	char			**args_array;	// command with all arguments like
 									//'cd /home/username jkl'
  */
 typedef struct s_tree
 {
-	t_token_type	type;
-	char			*value;
-	char			**args_array;
-	struct s_tree	*left;
-	struct s_tree	*right;
+	t_token_type	type; /*Type of the token*/
+	char			*value; /*Token value*/
+	char			**args_array; /*Array of command arguments*/
+	struct s_tree	*left; /*Pointer to the left child node*/
+	struct s_tree	*right; /*Pointer to the right child node*/
 }				t_tree;
 
-typedef struct s_heredoc_file 
+typedef struct s_heredoc_file
 {
-	int						id;
-	char					*filename;
-	struct s_heredoc_file	*next;
+	int						id; /*Identifier for the heredoc*/
+	char					*filename; /*Name of the heredoc file*/
+	struct s_heredoc_file	*next; /*Pointer to the next heredoc file in the list*/
 }				t_heredoc_file;
 
 typedef struct s_data
@@ -134,39 +113,39 @@ typedef struct s_data
 	struct s_tree	*tree;
 	struct s_token	*token_list;
 	int				s_quote; /*shell is inside a single quoted string*/
-	t_heredoc_file	*heredoc_file;
-	t_envir			*env_list;
-	t_envir			*sorted_env_list;
 	int				d_quote;
+	t_heredoc_file	*heredoc_file; /*List of heredoc files*/
+	t_envir			*env_list; /*Environment variable list*/
+	t_envir			*sorted_env_list;
 	long int		exit_status;
 	int				pid;
 	int				forked; /*manage parent and child process behaviors*/
 	int				count; /*count the number of tokens*/
 	char			*input_minishell; /*initial input to the shell*/
-	char			*curr_dir;
+	char			*curr_dir; /*Current directory*/
 	char			**root_directory; /*while be used later for parcing part*/
 	char			*input_line; /*input after being processed*/
 	char			*exit_str;
-	int				cmd_nbrs;
-	int				arg_nums;
+	int				cmd_nbrs; /*Number of commands*/
+	int				arg_nums; /*Number of arguments*/
 	int				parenthesis_scope;
 
 }				t_data;
 
 typedef struct s_token
 {
-	t_token_type	type;
-	char			*word;
-	struct s_token	*next;
-	struct s_token	*prev;
+	t_token_type	type; /*Type of the token*/
+	char			*word; /*Token word*/
+	struct s_token	*next; /*Pointer to the next token*/
+	struct s_token	*prev; /*Pointer to the previous token*/
 }				t_token;
 
 typedef struct s_heredoc_info
 {
-	char	*filename;
-	int		heredoc_count;
-	char	*token;
-	char	*limiter;
+	char	*filename; /*Name of the heredoc file*/
+	int		heredoc_count; /*Count of heredocs*/
+	char	*token; /*Heredoc token*/
+	char	*limiter; /*Heredoc limiter string*/
 }			t_heredoc_info;
 
 typedef struct s_copy_params
@@ -174,7 +153,7 @@ typedef struct s_copy_params
 	char			**new_input_line;
 	int				*i;
 	int				*j;
-	t_heredoc_file	**current_file;
+	t_heredoc_file	**current_file; /*Pointer to the current heredoc file*/
 }				t_copy_params;
 
 typedef struct s_find_command
@@ -229,9 +208,6 @@ typedef struct s_command_args
 void	minishell_loop(t_data *data);
 char	**create_envp(void);
 
-/*reset.c*/
-void	reset_data(t_data *data);
-
 /*find_token.c*/
 int		find_token(t_data *data, char *str, int *i, t_token **head);
 int		find_token2(int i, char *str, char *split);
@@ -247,7 +223,7 @@ void	find_three_out(t_token **head);
 void	fix_tokens(t_token **head, t_data *data);
 void	find_append(t_token *current);
 void	find_in_out(t_token **head);
-void 	clean_null_tokens(t_token **head);
+void	clean_null_tokens(t_token **head);
 void	find_asterisk(t_token **head, t_data *data);
 
 /*lexical_analysis.c*/
@@ -262,11 +238,11 @@ void	tokenise(t_data *data, char *str);
 void	concantenate_word_tokens(t_token **head);
 
 /*tokenising.c*/
-void		print_tokens(t_data *data);
-t_token		*create_token(t_data *data, int i);
-t_token		*create_arg_token(t_data *data, char *word, enum e_token_type type);
-void		clean_space_tokens(t_token **head);
-void		fix_tokens_tree(t_token **head);
+void	print_tokens(t_data *data);
+void	clean_space_tokens(t_token **head);
+void	fix_tokens_tree(t_token **head);
+t_token	*create_token(t_data *data, int i);
+t_token	*create_arg_token(t_data *data, char *word, enum e_token_type type);
 
 /*freearr - free memory*/
 void	free_2darray(char **array);
@@ -275,12 +251,19 @@ void	free_tree(t_tree **tree);
 /*init_data.c*/
 void	init_data(t_data **data, char **envp);
 
+/*reset.c*/
+void	reset_data(t_data *data);
+
 /*signal.c*/
 void	handle_signal(void);
 void	handle_sigint(int signo);
-void	handle_sigtstp_sigquit(int signo);
+void	handle_sigquit(int signo);
 void	handle_c(int signo);
 int		handle_d(t_data *data, char *input);
+
+/*signal1.c*/
+void	sig_interactive(void);
+void	ignore_ctrl_bslash(void);
 
 /*free.c*/
 void	free_data(t_data *data);
@@ -325,10 +308,9 @@ char	*expand_dollar(t_data *data, char *s, int *i);
 char	*expand_d_quotes(t_data *data, char *s, int *i, char *result);
 char	*expand_s_quotes(char *s, int *i, char *result);
 
-
 /*update_input_line.c*/
 void	update_input_line(t_data *data);
-void 	copy_filename(t_data *data, t_copy_params *params);
+void	copy_filename(t_data *data, t_copy_params *params);
 
 /*parenthesis.c*/
 int		lexic_with_parenth(t_data *data);
@@ -341,7 +323,6 @@ int		operand_error_parenth(int i);
 int		count_parenthesis(char *str, int *parenCount, int *parenth_total);
 int		check_parenthesis(int parenCount, int parenth_total);
 int		find_parenthesis(char *str);
-
 
 /*parenthesis_utils2.c*/
 int		set_token_parenth(t_data *data);
@@ -382,7 +363,7 @@ int		check_first_half_general(t_token *tmp);
 int		check_second_half_general(t_token *tmp);
 
 /*redin_errors.c*/
-int 	check_red(t_token *token, char *str);
+int		check_red(t_token *token, char *str);
 int		check_red_in(t_token *token);
 int		check_redin_first_half(t_token *token);
 int		check_redin_second_half(t_token *token);
@@ -433,7 +414,8 @@ void	free_heredoc_info(t_heredoc_info *info);
 
 /*tree_init.c*/
 int		init_tree(t_data *data, t_token **head);
-int		init_tree_one_parenth(t_data *data, t_token **root_token, t_token **head);
+int		init_tree_one_parenth(t_data *data, t_token **root_token, \
+t_token **head);
 
 
 // /*tree_utils.c*/
@@ -449,12 +431,11 @@ t_token	*find_tree_root_left(t_token **root_token);
 char	*ignore_spaces(char *input);
 int		is_only_ascii(char *str);
 char	**dup_2darray(char **array);
-int	len_2darray(char **array);
-int	is_char_in_str(char c, char *str);
+int		len_2darray(char **array);
+int		is_char_in_str(char c, char *str);
 
 /*utils3.c*/
-int	only_spaces_parenth(char *str);
-/* int	token_len(t_token *token); */
+int		only_spaces_parenth(char *str);
 
 /*utils4.c*/
 char	**ft_split_args(char *s, char c);
@@ -465,11 +446,11 @@ int		ft_countarr_args(char *s, char c);
 t_envir	*find_envir_variable(t_data *data, char *var_name, int len);
 
 /*built_tree.c*/
-int	built_tree(t_tree **tree, t_token *address, t_data *data);
+int		built_tree(t_tree **tree, t_token *address, t_data *data);
 
 /*tokenise_for_tree.c*/
-int tokenise_for_tree(t_token *t_parenth, t_data *data);
-t_data *init_temp_data(void);
+int		tokenise_for_tree(t_token *t_parenth, t_data *data);
+t_data	*init_temp_data(void);
 t_token	*copy_tokens(t_token *head);
 
 /*tokenise_for_tree_utils.c*/
@@ -484,10 +465,10 @@ void	ft_envclear(t_envir **lst);
 void	ft_envdelone(t_envir *lst, void (*del));
 
 /* envirlists_utils2.c */
-void		ft_enviter(t_envir *lst, int fd_out, void (*f)(t_envir *, int));
-t_envir		*ft_envlast(t_envir *lst);
-t_envir		*ft_envnew(void);
-int			ft_envsize(t_envir *lst);
+void	ft_enviter(t_envir *lst, int fd_out, void (*f)(t_envir *, int));
+t_envir	*ft_envlast(t_envir *lst);
+t_envir	*ft_envnew(void);
+int		ft_envsize(t_envir *lst);
 
 /*shlvl.c*/
 void	incr_shell_lvl(t_data *data);
@@ -510,56 +491,57 @@ void	connect_nodes(t_tree **temp_redir, t_tree *temp2);
 char	**join2darrays(char **str1, char **str2);
 
 /* environment.c */
-void		print_env_node(t_envir *env_node, int fd_out);
-void		print_env_node_sorted(t_envir *env_node, int fd_out);
-void		free_envir_array(char **env_array);
+void	print_env_node(t_envir *env_node, int fd_out);
+void	print_env_node_sorted(t_envir *env_node, int fd_out);
+void	free_envir_array(char **env_array);
 
 /* execute_buildins.c */
-int			is_builtin(char *cmd);
-int			execute_builtin(t_data *data, t_tree *tree, int fd_out);
-int			check_echo(t_data *data, t_tree *tree, int fd_out);
+int		is_builtin(char *cmd);
+int		execute_builtin(t_data *data, t_tree *tree, int fd_out);
+int		check_echo(t_data *data, t_tree *tree, int fd_out);
 
 /* execute_buildins2.c */
 // char		*get_curr_dir(void);
 // char		*get_home_dir(void);
-int			execute_pwd(t_data *data);
-void		execute_exit(t_data *data, t_tree *tree); // does not return
+int		execute_pwd(t_data *data);
+void	execute_exit(t_data *data, t_tree *tree); // does not return
 // anything to the programm, only to the system
-void		execute_env(t_envir **env, int fd_out);
+void	execute_env(t_envir **env, int fd_out);
 
 /* execute_buildins3.c */
-int			execute_cd(t_data *data, char *path);
-int			execute_unset(t_data *data, t_tree *tree);
+int		execute_cd(t_data *data, char *path);
+int		execute_unset(t_data *data, t_tree *tree);
 
 /* execute_export.c */
-int			execute_export(t_data *data, t_tree *tree, int fd_out);
-void		handle_existing_variable(t_envir *temp, char *var_value);
+int		execute_export(t_data *data, t_tree *tree, int fd_out);
+void	handle_existing_variable(t_envir *temp, char *var_value);
 void	handle_visible_variable(t_envir *temp);
-void		handle_new_variable(t_envir **env_list, char *var_name, \
+void	handle_new_variable(t_envir **env_list, char *var_name, \
 char *var_value);
-void		export(t_envir **env_list, char *var_name, char *var_value, \
+void	export(t_envir **env_list, char *var_name, char *var_value, \
 t_data *data);
 
 /* execute_echo.c */
-int			echo_handle_option(char **args);
-int			execute_echo(char *args[], int fd_out);
+int		echo_handle_option(char **args);
+int		execute_echo(char *args[], int fd_out);
 
 /* execute.c */
-int			execute(t_data *data);
-int			execute_and_handle_files(t_data *data, t_tree *tree);
-int			evaluate_execution(t_data *data, t_tree *tree);
-// int			execute_logic(t_data *data, t_tree *tree); // || and && handling roi 0621
+int		execute(t_data *data);
+int		execute_and_handle_files(t_data *data, t_tree *tree);
+int		evaluate_execution(t_data *data, t_tree *tree);
+/*int			execute_logic(t_data *data, t_tree *tree);
+// || and && handling roi 0621 */
 
 /* execute_redout.c */
-int			get_output_file(t_tree *tree);
+int		get_output_file(t_tree *tree);
 
 /* execute_redin.c */
-int			get_input_file(t_tree *tree);
+int		get_input_file(t_tree *tree);
 
 /* execute_word.c */
-int			execute_word(t_data *data, t_tree *tree, int fd_inp, int fd_out);
-int			execute_command(t_data *data, t_tree *tree, int fd_inp, int fd_out);
-char		**env(t_envir **lst);
+int		execute_word(t_data *data, t_tree *tree, int fd_inp, int fd_out);
+int		execute_command(t_data *data, t_tree *tree, int fd_inp, int fd_out);
+char	**env(t_envir **lst);
 // void		fill_envp(char **envp, t_envir **lst); // roi 0623 made static
 // void		print2darray(char **array); // roi 0623 debuggin funciton
 
@@ -570,32 +552,32 @@ void		close_pipe(int pipe_fd[2]);
 
 /* execute_utils.c */
 // int			is_logic_root(t_tree *tree); // || and && handling roi 0621
-int			is_word_root(t_tree *tree);
-int			is_special_root(t_tree *tree);
-int			is_only_asterisks(char *str);
+int		is_word_root(t_tree *tree);
+/*int		is_special_root(t_tree *tree);*/
+int		is_only_asterisks(char *str);
 
 /* execute_export_utils.c */
 // /* static  */int			handle_no_equal_sign(t_data *data, char *arg);
 // /* static */ int			handle_equal_sign(t_data *data, char *arg);
 // int			has_equal_sign(char *str);
-int			process_export_args(t_data *data, t_tree *tree);
+int		process_export_args(t_data *data, t_tree *tree);
 
 /* sorted_envir.c */
-t_envir		*copy_envir_list(t_envir *original);
-void		swap_nodes(t_envir *a, t_envir *b);
+t_envir	*copy_envir_list(t_envir *original);
+void	swap_nodes(t_envir *a, t_envir *b);
 // static void	sort_envir_list(t_envir *list);
-t_envir		*copy_and_sort_envir_list(t_envir *original);
-// void		fill_envp(char **envp, t_envir **lst); // roi 0623 double declaration
+t_envir	*copy_and_sort_envir_list(t_envir *original);
+// void	fill_envp(char **envp, t_envir **lst); // roi 0623 double declaration
 
 /* envirlists_utils.c */
-void		ft_envadd_back(t_envir **lst, t_envir *new);
-void		ft_envadd_front(t_envir **lst, t_envir *new);
-void		ft_envclear(t_envir **lst);
-void		ft_envdelone(t_envir *lst, void (*del));
+void	ft_envadd_back(t_envir **lst, t_envir *new);
+void	ft_envadd_front(t_envir **lst, t_envir *new);
+void	ft_envclear(t_envir **lst);
+void	ft_envdelone(t_envir *lst, void (*del));
 
 /* split_parenth.c */
 // char		**split_parenth(char const *s, char c);
-char		**split_parenth(char *s, char c);
+char	**split_parenth(char *s, char c);
 
 /* tracing.c   */
 void		out_t_envir(char *comment, t_envir *env_list);
@@ -606,17 +588,18 @@ void		out_oochar(char *comment, char **temp);
 
 
 /* commands.c */
-void		free_paths(char **paths, char **original_paths);
-char		*find_executable_path(t_data *data, char *cmd);
-t_envir		*find_envir_variable(t_data *data, char *var_name, int len);
+void	free_paths(char **paths, char **original_paths);
+char	*find_executable_path(t_data *data, char *cmd);
+t_envir	*find_envir_variable(t_data *data, char *var_name, int len);
 
 /* execute_word_utils.c */
-pid_t		create_child_process(char **exec_path);
-void		redirect_fds(int fd_inp, int fd_out);
-void		execute_forked_command(t_data *data, t_tree *tree, char *exec_path);
-int			handle_exit_status(t_data *data, pid_t pid, int status, \
+pid_t	create_child_process(char **exec_path);
+void	redirect_fds(int fd_inp, int fd_out);
+void	execute_forked_command(t_data *data, t_tree *tree, \
+char *exec_path);
+int		handle_exit_status(t_data *data, pid_t pid, int status, \
 char **exec_path);
-int			fork_command(t_command_args *args);
+int		fork_command(t_command_args *args);
 
 extern pid_t	g_child_pid; //Store process ID
 

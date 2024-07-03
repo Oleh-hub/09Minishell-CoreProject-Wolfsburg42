@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 17:37:13 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/02 16:34:41 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/03 19:13:33 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	free_paths(char **paths, char **original_paths)
 	paths = original_paths;
 	while (*paths)
 	{
+		ft_memdel(paths);
 		ft_memdel(paths);
 		paths++;
 	}
@@ -74,8 +75,6 @@ t_envir	*find_envir_variable(t_data *data, char *var_name, int len)
 {
 	t_envir	*current;
 
-	// out_t_data_data("inside find_envir_variable()", data);
-	// out_t_envir("inside find_envir_variable()", data->env_list);
 	current = data->env_list;
 	while (current)
 	{

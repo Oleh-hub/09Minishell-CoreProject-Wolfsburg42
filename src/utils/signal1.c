@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tree_utils.c                                       :+:      :+:    :+:   */
+/*   signal1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 09:12:37 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/07/03 10:23:03 by beredzhe         ###   ########.fr       */
+/*   Created: 2024/07/01 21:09:59 by beredzhe          #+#    #+#             */
+/*   Updated: 2024/07/01 21:17:36 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_tree	*init_tree_root(void)
+void	ignore_ctrl_bslash(void)
 {
-	t_tree	*tree;
+	struct sigaction	sa;
 
-	tree = malloc(sizeof(t_tree));
-	if (!tree)
-		return (NULL);
-	tree->type = 0;
-	tree->value = NULL;
-	tree->args_array = NULL;
-	tree->left = NULL;
-	tree->right = NULL;
-	return (tree);
+	ft_memset(&sa, 0, sizeof(sa));
+	sa.sa_handler = SIG_IGN;
+	sigaction(SIGQUIT, &sa, NULL);
+}
+
+/*ctrl-backslash is ignored*/
+void	sig_interactive(void)
+{
+	ignore_ctrl_bslash();
 }
