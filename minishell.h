@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/02 12:09:13 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/07/03 13:04:38 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@ int				visible;	// if visible =1 it can me seen by 'env',
 
 typedef struct s_envir
 {
-	char			*var_name;
-	char			*var_value;
-	int				visible;
-	struct s_envir	*next;
-	struct s_envir	*prev;
+	char			*var_name; /*Name of the environment variable*/
+	char			*var_value; /*Value of environment variable*/
+	int				visible; /*Visibility flag*/
+	struct s_envir	*next; /*Pointer to the next environment variable*/
+	struct s_envir	*prev; /*Pointer to the previous environment variable*/
 }			t_envir;
 
 /* 
@@ -94,18 +94,18 @@ typedef struct s_envir
  */
 typedef struct s_tree
 {
-	t_token_type	type;
-	char			*value;
-	char			**args_array;
-	struct s_tree	*left;
-	struct s_tree	*right;
+	t_token_type	type; /*Type of the token*/
+	char			*value; /*Token value*/
+	char			**args_array; /*Array of command arguments*/
+	struct s_tree	*left; /*Pointer to the left child node*/
+	struct s_tree	*right; /*Pointer to the right child node*/
 }				t_tree;
 
 typedef struct s_heredoc_file
 {
-	int						id;
-	char					*filename;
-	struct s_heredoc_file	*next;
+	int						id; /*Identifier for the heredoc*/
+	char					*filename; /*Name of the heredoc file*/
+	struct s_heredoc_file	*next; /*Pointer to the next heredoc file in the list*/
 }				t_heredoc_file;
 
 typedef struct s_data
@@ -114,38 +114,38 @@ typedef struct s_data
 	struct s_token	*token_list;
 	int				s_quote; /*shell is inside a single quoted string*/
 	int				d_quote;
-	t_heredoc_file	*heredoc_file;
-	t_envir			*env_list;
+	t_heredoc_file	*heredoc_file; /*List of heredoc files*/
+	t_envir			*env_list; /*Environment variable list*/
 	t_envir			*sorted_env_list;
 	long int		exit_status;
 	int				pid;
 	int				forked; /*manage parent and child process behaviors*/
 	int				count; /*count the number of tokens*/
 	char			*input_minishell; /*initial input to the shell*/
-	char			*curr_dir;
+	char			*curr_dir; /*Current directory*/
 	char			**root_directory; /*while be used later for parcing part*/
 	char			*input_line; /*input after being processed*/
 	char			*exit_str;
-	int				cmd_nbrs;
-	int				arg_nums;
+	int				cmd_nbrs; /*Number of commands*/
+	int				arg_nums; /*Number of arguments*/
 	int				parenthesis_scope;
 
 }				t_data;
 
 typedef struct s_token
 {
-	t_token_type	type;
-	char			*word;
-	struct s_token	*next;
-	struct s_token	*prev;
+	t_token_type	type; /*Type of the token*/
+	char			*word; /*Token word*/
+	struct s_token	*next; /*Pointer to the next token*/
+	struct s_token	*prev; /*Pointer to the previous token*/
 }				t_token;
 
 typedef struct s_heredoc_info
 {
-	char	*filename;
-	int		heredoc_count;
-	char	*token;
-	char	*limiter;
+	char	*filename; /*Name of the heredoc file*/
+	int		heredoc_count; /*Count of heredocs*/
+	char	*token; /*Heredoc token*/
+	char	*limiter; /*Heredoc limiter string*/
 }			t_heredoc_info;
 
 typedef struct s_copy_params
@@ -153,7 +153,7 @@ typedef struct s_copy_params
 	char			**new_input_line;
 	int				*i;
 	int				*j;
-	t_heredoc_file	**current_file;
+	t_heredoc_file	**current_file; /*Pointer to the current heredoc file*/
 }				t_copy_params;
 
 typedef struct s_find_command
@@ -419,6 +419,7 @@ t_token **head);
 
 /*tree_utils.c*/
 t_tree	*init_tree_root(void);
+void print_tree(t_tree *tree, int depth);
 
 /*find_tree_roots.c*/
 t_token	*find_first_root(t_token **root_token);

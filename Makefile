@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oruban <oruban@student.42.fr>              +#+  +:+       +#+         #
+#    By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/25 15:10:17 by beredzhe          #+#    #+#              #
-#    Updated: 2024/06/27 09:18:22 by oruban           ###   ########.fr        #
+#    Updated: 2024/07/03 11:19:53 by beredzhe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ LDLIBS	=	-lreadline -lft # This tells the linker to link the Readline library wi
 LDFLAGS	+=	-L./libft
 
 LIBFT_A	=	libft/libft.a
-HEADER	=	$(wildcard *.h)
+HEADER	=	minishell.h
 VPATH	=	src/main:src/tokenization:src/utils:src/lexer:src/expand:src/parenthesis:src/execution
 INCLUDE	=	-I ./ -I ./includes -I ./libft
 
