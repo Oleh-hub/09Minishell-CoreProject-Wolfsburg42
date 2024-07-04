@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/03 19:08:46 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/04 17:50:53 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -522,7 +522,7 @@ void	export(t_envir **env_list, char *var_name, char *var_value, \
 t_data *data);
 
 /* execute_echo.c */
-int		echo_handle_option(char **args);
+// static	int		echo_handle_option(char **args); // roi 0704
 int		execute_echo(char *args[], int fd_out);
 
 /* execute.c */
