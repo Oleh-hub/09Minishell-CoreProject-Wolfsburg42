@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/04 17:50:53 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/04 20:06:27 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,6 +264,9 @@ int		handle_d(t_data *data, char *input);
 /*signal1.c*/
 void	sig_interactive(void);
 void	ignore_ctrl_bslash(void);
+void	ctrl_c_heredoc(int sig);
+void	sig_heredoc(void);
+
 
 /*free.c*/
 void	free_data(t_data *data);
