@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_delim.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 09:09:24 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/25 20:20:48 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/04 19:24:43 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	handle_heredoc_input(t_heredoc_info *info, int fd, char **old_filename)
 	int		write_ret;
 
 	write_ret = 0;
+	sig_heredoc();
 	while (1)
 	{
 		buf = readline("> ");
