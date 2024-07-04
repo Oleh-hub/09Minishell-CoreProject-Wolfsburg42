@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:18:46 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/04 17:52:17 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/04 19:00:13 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ static int	echo_handle_option(char **args)
 	{
 		i++;
 		while (args[1][i] == 'n')
-		{
 			i++;
-		}
 		if (args[1][i] == '\0')
 			return (1);
 	}
@@ -83,33 +81,3 @@ int	execute_echo(char *args[], int fd_out)
 		ft_putstr_fd("\n", fd_out);
 	return (0);
 }
-
-/* int	execute_echo(char *args[], int fd_out)
-{
-	int		no_newline;
-	int		i;
-	int		first_arg_printed;
-
-	first_arg_printed = 0;
-	no_newline = echo_handle_option(args);
-	i = 1 + no_newline - 1;
-	while (args[i])
-	{
-		if (!strcmp (args[i], "-n") && !first_arg_printed)
-		{
-			i++;
-			continue ;
-		}
-		if (args[i][0] != '\0')
-		{
-			if (first_arg_printed)
-				ft_putstr_fd(" ", fd_out);
-			ft_putstr_fd(args[i], fd_out);
-			first_arg_printed = 1;
-		}
-		i++;
-	}
-	if (!no_newline)
-		ft_putstr_fd("\n", fd_out);
-	return (0);
-} */
