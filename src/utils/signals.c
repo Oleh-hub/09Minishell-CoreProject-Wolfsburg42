@@ -3,16 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 09:46:20 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/07/04 17:33:12 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/07/04 20:10:10 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*handlers for SIGINT and SIGQUIT signals.*/
+/*
+handlers for SIGINT and SIGQUIT signals.
+sa_int handles Ctrl+C
+sa_quit handles with Ctrl+D
+*/
 void	handle_signal(void)
 {
 	struct sigaction	sa_int;
