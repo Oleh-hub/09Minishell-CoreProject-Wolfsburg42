@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_general_errors.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 14:36:22 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/25 09:34:13 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:22:51 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,11 @@ another word token - like 'echo & 1234 ls'*/
 int	check_numbers(t_token *tmp)
 {
 	if (tmp->next->type == T_SPACE && tmp->next->next->type == T_WORD
-		&& ft_only_digit(tmp->next->next->word)
+		&& is_number(tmp->next->next->word)
 		&& tmp->next->next->next->type != T_WORD)
 		return (printf("minishell: syntax error near unexpected token `%s'\n", \
 		tmp->next->next->word), 1);
-	if (tmp->next->type == T_WORD && ft_only_digit(tmp->next->word)
+	if (tmp->next->type == T_WORD && is_number(tmp->next->word)
 		&& tmp->next->next->type != T_WORD)
 		return (printf("minishell: syntax error near unexpected token `%s'\n", \
 		tmp->next->word), 1);

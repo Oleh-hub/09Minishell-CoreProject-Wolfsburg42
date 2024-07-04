@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 19:14:56 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/01 19:30:33 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/04 15:16:22 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ I have to use ft_strncmp() because I am not sure that
 int	check_echo(t_data *data, t_tree *tree, int fd_out)
 {
 	// tracing:
-	// printf("==> check_echo tree->args_array[0]='%s'\n", tree->args_array[0]);
+	// out_t_tree("check_echo()", tree); //
+	// printf("\033[34m=====================\033[0m\n");//
 	if (!ft_strcmp(tree->args_array[0], "echo"))
 	{
 		if (execute_echo(tree->args_array, fd_out))

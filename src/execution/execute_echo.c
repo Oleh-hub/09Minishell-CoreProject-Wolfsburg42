@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:18:46 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/01 19:31:58 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/04 15:23:46 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,14 @@ int	execute_echo(char *args[], int fd_out)
 	int		i;
 	int		first_arg_printed;
 
+	// char *tmp[] = args;
+	// while ()
+	// {
+		
+	// }
 	i = 1;
 	first_arg_printed = 0;
+	
 	no_newline = echo_handle_option(args);
 	if (no_newline)
 		i++;

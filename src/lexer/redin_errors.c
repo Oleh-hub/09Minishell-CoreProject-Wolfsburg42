@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redin_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:03:39 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/06/21 07:41:37 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:22:51 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,11 @@ int	check_redin_last_part(t_token *token)
 {
 	if (token->next->type == T_AMPER && token->next->next->type == T_SPACE
 		&& token->next->next->next->type == T_WORD
-		&& !ft_only_digit(token->next->next->next->word))
+		&& !is_number(token->next->next->next->word))
 		return (printf("minishell: %s: ambiguous redirect\n", \
 		token->next->next->next->word), 1);
 	if (token->next->type == T_AMPER && token->next->next->type == T_WORD
-		&& !ft_only_digit(token->next->next->word))
+		&& !is_number(token->next->next->word))
 		return (printf("minishell: %s: ambiguous redirect\n", \
 		token->next->next->word), 1);
 	if (token->next->type == T_AMPER && token->next->next->type == T_SPACE)

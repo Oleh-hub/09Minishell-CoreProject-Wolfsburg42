@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/03 19:08:46 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/04 13:22:51 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -285,7 +285,7 @@ int		in_quotes(char *s, int pos);
 char	*trim_input(char *input);
 void	process_input(char *input, char *str, int *i, int *j);
 int		ft_char_in_string(char c, char *str);
-int		ft_only_digit(char *str);
+int		is_number(char *str);
 
 /*character_checkers.c*/
 int		special_chars(char *str);
