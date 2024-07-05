@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 19:14:56 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/04 15:16:22 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/05 11:24:34 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	execute_builtin(t_data *data, t_tree *tree, int fd_out)
 roi 0612
 
 if the command is 'echo' -> execute_echo() but if
-when tree->args_array[0] may be longer than 4 and contain 'echo' like 'echoolll'
+when tree->args_array[0] may be longer than 4 and contain 'echo' like 'echoLALA'
  - 'echolllllllllll: command not found' is printed out
 I have to use ft_strncmp() because I am not sure that 
  */

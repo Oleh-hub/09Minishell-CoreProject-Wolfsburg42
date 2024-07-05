@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:22:45 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/02 18:04:57 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/05 11:21:55 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ void	out_t_tree(char *comment, t_tree *tree)
 	while (tree)
 	{
 		printf("(t_token_type	*)tree->type		= %d\n", tree->type);
-		printf("(char		*)tree->value		= %s\n", tree->value);
+		printf("(char		*)tree->value		= '%s'\n", tree->value);
 		printf("(char		**)tree->args_array	= %p\n", tree->args_array);
 		if (tree->args_array)
 		{
 			i = 0;
 			while (tree->args_array[i])
 			{
-				printf("tree->args_array[%d]		= %s\n", i, \
+				printf("tree->args_array[%d]		= '%s'\n", i, \
 					tree->args_array[i]);
 				i++;
 			}
