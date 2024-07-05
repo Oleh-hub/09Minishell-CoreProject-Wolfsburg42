@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
+/*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:19:58 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/19 10:52:23 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/05 10:36:18 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,30 @@ void	print_env_node_sorted(t_envir *env_node, int fd_out)
 	if (!env_node)
 		return ;
 	env = env_node;
-	if (env->visible)
+	// if (env->visible)
+	// {
+	// 	ft_putstr_fd("declare -x ", fd_out);
+	// 	ft_putstr_fd(env->var_name, fd_out);
+	// 	ft_putstr_fd("\n", fd_out);
+	// }
+	ft_putstr_fd("declare -x ", fd_out);
+	ft_putstr_fd(env->var_name, fd_out);
+	// else
+	// {
+	// 	ft_putstr_fd("declare -x ", fd_out);
+	// 	ft_putstr_fd(env->var_name, fd_out);
+		// ft_putstr_fd("=\"", fd_out);
+		// ft_putstr_fd(env->var_value, fd_out);
+		// ft_putstr_fd("\"\n", fd_out);
+	// }
+	if (env->var_value && ft_strlen(env->var_value) > 0)
 	{
-		ft_putstr_fd("declare -x ", fd_out);
-		ft_putstr_fd(env->var_name, fd_out);
-		ft_putstr_fd("\n", fd_out);
-	}
-	else
-	{
-		ft_putstr_fd("declare -x ", fd_out);
-		ft_putstr_fd(env->var_name, fd_out);
 		ft_putstr_fd("=\"", fd_out);
 		ft_putstr_fd(env->var_value, fd_out);
-		ft_putstr_fd("\"\n", fd_out);
+		ft_putstr_fd("\"\n", fd_out);	
 	}
+	else
+		ft_putstr_fd("\n", fd_out);
 }
 
 void	free_envir_array(char **env_array)
