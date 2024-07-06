@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:32:54 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/05 11:42:39 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/07/06 12:29:10 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ typedef struct s_heredoc_file
 {
 	int						id; /*Identifier for the heredoc*/
 	char					*filename; /*Name of the heredoc file*/
-	struct s_heredoc_file	*next; /*Pointer to the next heredoc file in the list*/
+	struct s_heredoc_file	*next; /*Next heredoc file in the list*/
 }				t_heredoc_file;
 
 typedef struct s_data
@@ -375,6 +375,7 @@ int		check_redin_last_part(t_token *token);
 int		check_delim(t_token *token);
 int		check_first_half_delim(t_token *token);
 int		check_second_half_delim(t_token *token);
+int		check_thirth_half_delim(t_token *token);
 int		check_append(t_token *token);
 
 /*token_errors.c*/
@@ -418,7 +419,6 @@ void	free_heredoc_info(t_heredoc_info *info);
 int		init_tree(t_data *data, t_token **head);
 int		init_tree_one_parenth(t_data *data, t_token **root_token, \
 t_token **head);
-
 
 // /*tree_utils.c*/
 t_tree	*init_tree_root(void);
@@ -548,9 +548,9 @@ char	**env(t_envir **lst);
 // void		print2darray(char **array); // roi 0623 debuggin funciton
 
 /* execute_pipe.c */
-int			execute_pipe(t_data *data, t_tree *tree);
-void		create_pipe_and_check(int pipe_fd[2]);
-void		close_pipe(int pipe_fd[2]);
+int		execute_pipe(t_data *data, t_tree *tree);
+void	create_pipe_and_check(int pipe_fd[2]);
+void	close_pipe(int pipe_fd[2]);
 
 /* execute_utils.c */
 // int			is_logic_root(t_tree *tree); // || and && handling roi 0621
@@ -582,12 +582,11 @@ void	ft_envdelone(t_envir *lst, void (*del));
 char	**split_parenth(char *s, char c);
 
 /* tracing.c   */
-void		out_t_envir(char *comment, t_envir *env_list);
-void		out_t_tree(char *comment, t_tree *tree);
-void		tree_out(t_tree *tree);
-void		out_t_data_data(char *comment, t_data *data);
-void		out_oochar(char *comment, char **temp);
-
+void	out_t_envir(char *comment, t_envir *env_list);
+void	out_t_tree(char *comment, t_tree *tree);
+void	tree_out(t_tree *tree);
+void	out_t_data_data(char *comment, t_data *data);
+void	out_oochar(char *comment, char **temp);
 
 /* commands.c */
 void	free_paths(char **paths, char **original_paths);

@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 09:41:00 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/05 16:32:35 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/07/05 16:40:14 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static int	handle_no_equal_sign(t_data *data, char *arg)
 
 	// Iterate over each character in arg to check for invalid characters
 	while (arg[i] != '\0') {
-		if (!ft_isalnum(arg[i]) && arg[i] != '_') { // Check if character is not alphanumeric and not underscore
+		if (!ft_isalnum(arg[i]) && arg[i] != '_')
+		{ // Check if character is not alphanumeric and not underscore
 			return (printf("minishell: export: `%s': not a valid identifier\n", arg), 1);
 		}
 		i++;
