@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 17:37:13 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/03 19:15:15 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/06 11:47:42 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ char	*find_executable_path(t_data *data, char *cmd)
 /* roi 0607
 looks through the list t_envir
  */
+	// out_t_data_data("inside find_envir_variable()", data);
+	// out_t_envir("inside find_envir_variable()", data->env_list);
 t_envir	*find_envir_variable(t_data *data, char *var_name, int len)
 {
 	t_envir	*current;
 
-	// out_t_data_data("inside find_envir_variable()", data);
-	// out_t_envir("inside find_envir_variable()", data->env_list);
 	current = data->env_list;
 	while (current)
 	{

@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 18:00:44 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/01 20:09:53 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/06 11:41:27 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 /* roi 0605
  */
-
-int	execute(t_data *data)
-{
 	/* int	result;
 
 	result = evaluate_execution(data, data->tree);
 	data->exit_status = result;
 	return (result); */
 	// out_t_data_data("!====tracning in execute()", data); //roi0605
+int	execute(t_data *data)
+{
 	return (data->exit_status = evaluate_execution(data, data->tree));
 }
 
@@ -61,10 +60,6 @@ roi  0608-21 - 0701
 'minishell: syntax error near unexpected token `||''
 output should be implemented in case of '||' token 
  */
-int	evaluate_execution(t_data *data, t_tree *tree)
-{
-	int	result;
-
 	/* if (is_logic_root(tree)) //  || and && handling
 		if (execute_logic(data, tree))
 			return (1); */
@@ -74,7 +69,11 @@ int	evaluate_execution(t_data *data, t_tree *tree)
 	// {printf ("\033[31m evaluate_execution\n"); 	// debug 0701 || mstk hndlng
 	// tree_out(tree); 							// debug 0701
 	// printf("\033[0m\n");						// debug 0701}
-	if (tree->type == T_OR || tree->type == T_AND) // 0701
+int	evaluate_execution(t_data *data, t_tree *tree)
+{
+	int	result;
+
+	if (tree->type == T_OR || tree->type == T_AND)
 	{
 		printf("minishell: syntax error near unexpected token `%s'\n", \
 			tree->value);
@@ -85,23 +84,8 @@ int	evaluate_execution(t_data *data, t_tree *tree)
 			return (1);
 	if (is_word_root(tree))
 	{
-		result = execute_and_handle_files(data, tree); //0608 root is not needed
+		result = execute_and_handle_files(data, tree);
 		return (result);
 	}
 	return (0);
 }
-
-/* 
-	roi 0621
-	|| and && handling
- */
-/* int	execute_logic(t_data *data, t_tree *tree)
-{
-	if (tree->type == T_AND)
-		if (execute_and(data, tree))
-			return (1);
-	if (tree->type == T_OR)
-		if (execute_or(data, tree))
-			return (1);
-	return (0);
-} */

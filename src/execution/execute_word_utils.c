@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 08:46:39 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/26 15:34:32 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/06 11:34:02 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,6 @@ void	redirect_fds(int fd_inp, int fd_out)
 	// Tracing:
 	// printf("exec_path1: %s\n", exec_path); // roi 0621
  */
-
-void	execute_forked_command(t_data *data, t_tree *tree, char *exec_path)
-{
-	char	**envp;
-
-	envp = env(&data->env_list);
 	// char **tmp = envp;
 	// out_t_tree("inside execute_forked_command \n", tree);	// roi 0623
 	// printf("exec_path: %s\n", exec_path); 					// roi 0623
@@ -64,6 +58,11 @@ void	execute_forked_command(t_data *data, t_tree *tree, char *exec_path)
 	// 	printf("envp: %s\n", *tmp);
 	// 	tmp++;
 	// }
+void	execute_forked_command(t_data *data, t_tree *tree, char *exec_path)
+{
+	char	**envp;
+
+	envp = env(&data->env_list);
 	if (execve(exec_path, tree->args_array, envp) == -1)
 	{
 		printf("execve failed\n");

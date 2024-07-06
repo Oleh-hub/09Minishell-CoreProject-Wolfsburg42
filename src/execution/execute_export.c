@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:18:50 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/01 20:07:18 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/06 11:32:20 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 		again but not rubbish the memory for seldom called command
  */
 // out_t_tree("===>execute_export",tree); // tracing
+		// out_t_envir("==>execute_export==b4\n ", data->env_list); // tracing
+		// out_t_envir("==>execute_export==AFTER\n ", sorted); // tracing
 int	execute_export(t_data *data, t_tree *tree, int fd_out)
 {
 	t_envir	*sorted;
@@ -37,9 +39,7 @@ int	execute_export(t_data *data, t_tree *tree, int fd_out)
 		return (process_export_args(data, tree));
 	else
 	{
-		// out_t_envir("==>execute_export==b4\n ", data->env_list); // tracing
 		sorted = copy_and_sort_envir_list(data->env_list);
-		// out_t_envir("==>execute_export==AFTER\n ", sorted); // tracing
 		ft_enviter(sorted, fd_out, print_env_node_sorted);
 		return (ft_envclear(&sorted), 0);
 	}

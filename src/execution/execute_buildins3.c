@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 16:12:39 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/01 20:02:05 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/06 11:34:46 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ static int	validate_and_change_directory(char *path)
 	int cwd by getcwd() function
 4. if getcwd() fails -> free mem and return NULL
 */
+	// cwd = get_curr_dir();
+	//============
+	// ft_memdel(&pwd_env->var_value); 
 static	int	update_pwd(t_data *data)
 {
 	char	*cwd;
@@ -56,19 +59,16 @@ static	int	update_pwd(t_data *data)
 		return (perror("minishell: cd: Cant get the current directory\n"), 1);
 	if (!getcwd(cwd, PATH_MAX))
 		return (free(cwd), 1);
-	// cwd = get_curr_dir();
 	if (!cwd)
 		return (printf("minishell: error getting current directory\n"), 1);
 	pwd_env = find_envir_variable(data, "PWD", 3);
 	if (!pwd_env)
 		return (free(cwd), 0);
-	//============
 	if (pwd_env->var_value)
 	{
 		free(pwd_env->var_value);
 		pwd_env->var_value = NULL;
 	}
-	// ft_memdel(&pwd_env->var_value); 
 	pwd_env->var_value = ft_strdup(cwd);
 	return (free(cwd), 0);
 }
@@ -78,9 +78,9 @@ static	int	update_pwd(t_data *data)
 2. - otherwise - change into argument validate_and_change_directory() 
 3/ - and update_pwd()
 */
+	// out_t_envir("inside execute_cd()", data->env_list); // roi 0607
 int	execute_cd(t_data *data, char *path)
 {
-	// out_t_envir("inside execute_cd()", data->env_list); // roi 0607
 	if (!path)
 	{
 		path = getenv("HOME");

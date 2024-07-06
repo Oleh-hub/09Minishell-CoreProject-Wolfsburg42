@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 09:41:00 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/02 16:35:51 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/06 11:39:05 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ static int	handle_no_equal_sign(t_data *data, char *arg)
 	temp = ft_split(arg, '=');	// roi 0614
 	export lol=lala ror=rara - done // roi 0627
  */
+	// temp = ft_split(arg, '=');	// roi 0614
+	// out_oochar("===>handle_equal_sign()", temp); // tracing
 static int	handle_equal_sign(t_data *data, char *arg)
 {
 	char	**temp;
 	int		result;
 
 	temp = split_parenth(arg, '=');
-	// temp = ft_split(arg, '=');	// roi 0614
-	// out_oochar("===>handle_equal_sign()", temp); // tracing
 	result = 0;
 	if (temp[1] && !temp[2])
 	{
@@ -78,6 +78,10 @@ static int	handle_equal_sign(t_data *data, char *arg)
 	"export olh=1 =serg = mom"case
 	export lol=lala ror=rara - done
  */
+		// printf("\033[34m tree->args_array[%d]		= %s\033[0m\n",
+		//  i, tree->args_array[i]); // debugging
+		// out_t_tree("<===process_export_args()===>export lol=lala 
+		// ror=rara", tree); //tracing roi0627 
 int	process_export_args(t_data *data, t_tree *tree)
 {
 	int		i;
@@ -85,10 +89,8 @@ int	process_export_args(t_data *data, t_tree *tree)
 	i = 0;
 	while (tree->args_array[++i])
 	{
-		// printf("\033[34m tree->args_array[%d]		= %s\033[0m\n", i, tree->args_array[i]); // debugging
 		if (ft_strchr(tree->args_array[i], '='))
 		{
-		// out_t_tree("<===process_export_args()===>export lol=lala ror=rara", tree); //tracing roi0627 
 			if (handle_equal_sign(data, tree->args_array[i]))
 				return (1);
 		}
@@ -98,21 +100,3 @@ int	process_export_args(t_data *data, t_tree *tree)
 	}
 	return (0);
 }
-
-/* int	process_export_args(t_data *data, t_tree *tree)
-{
-	int		i;
-	char	*equal_adress;
-
-	i = 0;
-	while (tree->args_array[++i])
-	{
-		equal_adress = ft_strchr(tree->args_array[i], '=');
-		if (equal_adress)
-			return (handle_equal_sign(data, tree->args_array[i]));
-		else
-			return (handle_no_equal_sign(data, tree->args_array[i]));
-	}
-	return (0);
-}
- */

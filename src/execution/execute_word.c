@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 20:02:37 by oruban            #+#    #+#             */
-/*   Updated: 2024/06/25 20:02:39 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/06 11:33:11 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 	 - and execute either builtin with execute_builitin() 
 	- or command with execute_command()
  */
+//************* checking the command line 0609 roi
+//  out_t_tree("inside execute_word- BUILDIN / COMMAND execution choice", tree);
 int	execute_word(t_data *data, t_tree *tree, int fd_inp, int fd_out)
 {
 	if (tree == NULL || tree->value == NULL || tree->args_array == NULL)
 		return (1);
-//************* checking the command line 0609 roi
-//  out_t_tree("inside execute_word- BUILDIN / COMMAND execution choice", tree);
 	if (is_builtin(tree->args_array[0]))
 	{
 		if (execute_builtin(data, tree, fd_out))

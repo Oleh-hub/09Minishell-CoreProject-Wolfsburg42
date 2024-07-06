@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:18:46 by oruban            #+#    #+#             */
-/*   Updated: 2024/07/05 13:27:40 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/06 11:35:29 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static int	prn_out(char *arg, int fd_out, int first_arg_printed)
 	muliple -n flags before argument are ignored like in bash,
 	cases like 'echo -n -n JKL -n'
  */
+	// i = 1 + no_newline - 1;
 int	execute_echo(char *args[], int fd_out)
 {
 	int		no_newline;
@@ -65,7 +66,6 @@ int	execute_echo(char *args[], int fd_out)
 
 	first_arg_printed = 0;
 	no_newline = echo_handle_option(args);
-	// i = 1 + no_newline - 1;
 	i = 1 + no_newline;
 	while (args[i])
 	{

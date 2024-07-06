@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:20:32 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/07/04 13:15:40 by oruban           ###   ########.fr       */
+/*   Updated: 2024/07/06 11:46:48 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ int	ft_char_in_string(char c, char *str)
  */
 int	ft_only_digit(char *str)
 {
-    if (*str == '-')
-        str++;
-    while (*str)
-    {
-        if (!ft_isdigit(*str))
-            return (0);
-        str++;
-    }
-    return (1);
+	if (*str == '-')
+		str++;
+	while (*str)
+	{
+		if (!ft_isdigit(*str))
+			return (0);
+		str++;
+	}
+	return (1);
 }
